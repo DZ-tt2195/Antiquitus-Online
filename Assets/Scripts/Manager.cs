@@ -57,9 +57,10 @@ public class Manager : MonoBehaviour, IOnEventCallback
     Button sortingButton;
     TMP_Text submissionText;
     TMP_Text sortingText;
-    GameObject blownUp;
-    TMP_Text endText;
-    Button leaveRoom;
+
+    public GameObject blownUp;
+    public TMP_Text endText;
+    public Button leaveRoom;
 
     private void FixedUpdate()
     {
@@ -86,9 +87,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
         sortingButton = GameObject.Find("Sorting Button").GetComponent<Button>();
         sortingText = sortingButton.GetComponentInChildren<TMP_Text>();
         sortingButton.onClick.AddListener(ChangeSorting);
-        blownUp = GameObject.Find("Blown Up");
-        endText = GameObject.Find("Endtext").GetComponent<TMP_Text>();
-        leaveRoom = GameObject.Find("Leave Room").GetComponent<Button>();
     }
 
     public void Update()
@@ -281,6 +279,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
             abilityCollector.gameObject.SetActive(false);
             textCollector.gameObject.SetActive(false);
             blownUp.SetActive(false);
+            Log.instance.transform.SetAsLastSibling();
 
             if (resigningPlayer > -1)
                 rp = playerordergameobject[resigningPlayer];
