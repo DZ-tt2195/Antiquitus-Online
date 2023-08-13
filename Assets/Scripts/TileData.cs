@@ -17,9 +17,9 @@ public class TileData : MonoBehaviourPunCallbacks
 
     [HideInInspector] public List<TileData> adjacentTiles = new List<TileData>();
 
-    public PhotonView pv;
-    public SendChoice choicescript;
-    public Image image;
+    [HideInInspector] public PhotonView pv;
+    [HideInInspector] public SendChoice choicescript;
+    [HideInInspector] public Image image;
 
     // Start is called before the first frame update
     void Awake()

@@ -11,7 +11,7 @@ public class SendChoice : MonoBehaviour
     public Image image;
 
     public TMP_Text textbox;
-    [HideInInspector] public Image border;
+    public Image border;
     [HideInInspector] public bool enableBorder;
 
     [HideInInspector] public Card card;
@@ -24,22 +24,35 @@ public class SendChoice : MonoBehaviour
     void Awake()
     {
         button = this.GetComponent<Button>();
+        button.onClick.AddListener(SendName);
+
         card = this.GetComponent<Card>();
         mytile = this.GetComponent<TileData>();
         mybox = this.GetComponent<WeaponBox>();
         myarrow = this.GetComponent<BoneArrow>();
-        button.onClick.AddListener(SendName);
         myPlacard = this.GetComponent<Placard>();
 
         if (mybox != null || myarrow != null)
         {
             border = this.GetComponent<Image>();
         }
-        else if (card != null || mytile != null || myPlacard != null)
+        else if (card != null)
         {
             border = this.transform.GetChild(0).GetComponent<Image>();
-            if (myPlacard != null)
-                border.rectTransform.sizeDelta = new Vector2(170, 120);
+            border.transform.localPosition = new Vector2(0, 0);
+            border.rectTransform.sizeDelta = new Vector2(120, 120);
+        }
+        else if (myPlacard != null)
+        {
+            border = this.transform.GetChild(0).GetComponent<Image>();
+            border.transform.localPosition = new Vector2(0, 0);
+            border.rectTransform.sizeDelta = new Vector2(140, 100);
+        }
+        else if (mytile != null)
+        {
+            border = this.transform.GetChild(0).GetComponent<Image>();
+            border.transform.localPosition = new Vector2(0, 0);
+            border.rectTransform.sizeDelta = new Vector2(280, 280);
         }
     }
 

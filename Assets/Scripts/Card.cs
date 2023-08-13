@@ -13,17 +13,21 @@ public class Card : MonoBehaviour
     [HideInInspector] public string logName;
     public int rank;
 
-    public PhotonView pv;
-    public Image image;
-    public SendChoice choicescript;
+    [HideInInspector] public PhotonView pv;
+    [HideInInspector] public Image image;
+    [HideInInspector] public SendChoice choicescript;
     [HideInInspector] public int suitCode;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         pv = this.GetComponent<PhotonView>();
         image = GetComponent<Image>();
         choicescript = GetComponent<SendChoice>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         Setup();
 
         switch (type)
