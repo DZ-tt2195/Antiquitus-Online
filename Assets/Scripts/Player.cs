@@ -69,12 +69,7 @@ public class Player : MonoBehaviourPunCallbacks
     [PunRPC]
     public void AssignInfo(int position, Photon.Realtime.Player playername)
     {
-        this.transform.localPosition = new Vector3(0 + 2000 * playerposition, 0, 0);
-        this.transform.localScale = new Vector3(2, 2, 0);
-
-        cardhand.transform.localPosition = new Vector2(0, -260);
-        placardhand.transform.localPosition = new Vector2(555, 300);
-
+        this.transform.localPosition = new Vector3(-280 + 2000 * playerposition, 0, 0);
         this.playerposition = position;
         this.photonplayer = playername;
         this.myButton = GameObject.Find($"{this.name}'s Button").GetComponent<PlayerButton>();
@@ -154,11 +149,15 @@ public class Player : MonoBehaviourPunCallbacks
             turns++;
             ClickMe();
             photonView.RPC("WaitForPlayer", RpcTarget.Others, this.name);
+
+            Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+            Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name}'s Turn");
+
             yield return ChooseTileInSite();
             yield return new WaitForSeconds(0.5f);
 
-            for (int i = 0; i < tilethisturn.adjacenttiles.Count; i++)
-                yield return ResolveAdjacentTile(tilethisturn.adjacenttiles[i]);
+            for (int i = 0; i < tilethisturn.adjacentTiles.Count; i++)
+                yield return ResolveAdjacentTile(tilethisturn.adjacentTiles[i]);
 
             yield return cardthisturn.OnTakeEffect(this);
 
@@ -214,18 +213,24 @@ public class Player : MonoBehaviourPunCallbacks
 
     IEnumerator ResolveAdjacentTile(TileData nextTile)
     {
-        if (nextTile.faceup)
+        if (nextTile != null)
         {
-            cardsdiscarded++;
-            Card discardedCard = nextTile.mycard;
-            nextTile.pv.RPC("ReplaceCard", RpcTarget.MasterClient);
-            photonView.RPC("DiscardCard", RpcTarget.All, discardedCard.pv.ViewID);
-            yield return discardedCard.OnDiscardEffect(this);
-        }
-        else
-        {
-            cardsrevealed++;
-            nextTile.pv.RPC("FlipTile", RpcTarget.All, true);
+            if (nextTile.faceup)
+            {
+                cardsdiscarded++;
+                Card discardedCard = nextTile.mycard;
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name} discards {nextTile.mycard.logName}.");
+
+                nextTile.pv.RPC("ReplaceCard", RpcTarget.MasterClient);
+                photonView.RPC("DiscardCard", RpcTarget.All, discardedCard.pv.ViewID);
+                yield return discardedCard.OnDiscardEffect(this);
+            }
+            else
+            {
+                cardsrevealed++;
+                nextTile.pv.RPC("FlipTile", RpcTarget.All, true);
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name} reveals {nextTile.mycard.logName}.");
+            }
         }
     }
 
@@ -307,10 +312,13 @@ public class Player : MonoBehaviourPunCallbacks
                 }
 
                 if (successfulPlacards.Count == 2 && StrengthInNumbers != null)
+                {
                     successfulPlacards.Add(StrengthInNumbers);
+                }
 
                 if (successfulPlacards.Count >= 1)
                 {
+                    Log.instance.AddText($"");
                     int totalPoints = (successfulPlacards.Count - 1);
                     int[] cardIDs = new int[submittedCards.Count];
                     int[] placardIDs = new int[successfulPlacards.Count];
@@ -318,12 +326,14 @@ public class Player : MonoBehaviourPunCallbacks
                     for (int i = 0; i < submittedCards.Count; i++)
                     {
                         cardIDs[i] = submittedCards[i].pv.ViewID;
+                        Log.instance.AddText($"{this.name} submits {submittedCards[i].logName}.");
                         submittedCards[i].pv.RPC("TrashThis", RpcTarget.All, this.playerposition);
                     }
                     for (int i = 0; i < successfulPlacards.Count; i++)
                     {
                         totalPoints += successfulPlacards[i].rep;
                         placardIDs[i] = successfulPlacards[i].pv.ViewID;
+                        Log.instance.AddText($"{this.name} submits {successfulPlacards[i].logName}.");
                         successfulPlacards[i].pv.RPC("TrashThis", RpcTarget.All, this.playerposition);
                     }
                     this.pv.RPC("MadeSubmission", RpcTarget.All, totalPoints);
@@ -339,6 +349,7 @@ public class Player : MonoBehaviourPunCallbacks
     {
         Manager.instance.remainingsubmissions--;
         this.reputation += total;
+        Log.instance.AddText($"{this.name} scores {total} REP.");
         this.personalsubmissions++;
         this.UpdateButtonText();
     }
@@ -387,8 +398,9 @@ public class Player : MonoBehaviourPunCallbacks
     {
         for (int i = 0; i < cardIDs.Length; i++)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
             Card nextcard = PhotonView.Find(cardIDs[i]).gameObject.GetComponent<Card>();
+            Log.instance.AddText($"{this.name} puts {nextcard.logName} in their hand.");
 
             if (this.cardhand.childCount == 0)
             {
@@ -400,6 +412,7 @@ public class Player : MonoBehaviourPunCallbacks
                 AddCardBySuit(nextcard, 0, cardhand.childCount - 1);
             else
                 AddCardByRank(nextcard, 0, cardhand.childCount - 1);
+            nextcard.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -455,14 +468,17 @@ public class Player : MonoBehaviourPunCallbacks
     {
         Placard nextPlacard = PhotonView.Find(viewID).gameObject.GetComponent<Placard>();
         nextPlacard.transform.SetParent(this.placardhand);
+        nextPlacard.transform.localScale = new Vector3(1, 1, 1);
         listOfPlacard.Add(nextPlacard);
 
         if (pv.IsMine)
         {
             nextPlacard.image.sprite = nextPlacard.originalImage;
+            Log.instance.AddText($"{this.name} gets {nextPlacard.logName}.");
         }
         else
         {
+            Log.instance.AddText($"{this.name} gets a {nextPlacard.rep} REP placard.");
             switch (nextPlacard.rep)
             {
                 case 1:
@@ -492,6 +508,7 @@ public class Player : MonoBehaviourPunCallbacks
             while (choice == "")
                 yield return null;
 
+            Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name} trashes {chosenPlacard.logName}.");
             chosenPlacard.pv.RPC("TrashThis", RpcTarget.All, this.playerposition);
             yield return new WaitForSeconds(0.3f);
             for (int i = 0; i < listOfPlacard.Count; i++)

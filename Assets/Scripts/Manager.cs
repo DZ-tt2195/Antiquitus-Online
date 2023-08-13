@@ -118,6 +118,14 @@ public class Manager : MonoBehaviour, IOnEventCallback
         }
     }
 
+    public TileData FindTile(int row, int col)
+    {
+        if (row < 0 || row > 4 || col < 0 || col > 4)
+            return null;
+        else
+            return this.listoftiles[row * 5 + col];
+    }
+
     void Start()
     {
         leaveRoom.onClick.AddListener(Quit);

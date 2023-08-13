@@ -6,7 +6,7 @@ using Photon.Pun;
 public class TextManager : MonoBehaviour
 {
     public static TextManager instance;
-    public PhotonView pv;
+    [HideInInspector] public PhotonView pv;
     public int waiting;
 
     public int[] placardIDs;

@@ -11,6 +11,7 @@ public class Placard : MonoBehaviour
     [HideInInspector] public Image image;
     [HideInInspector] public SendChoice choicescript;
     [HideInInspector] public Sprite originalImage;
+    [HideInInspector] public string logName;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class Placard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        logName = this.name;
         Setup();
     }
 

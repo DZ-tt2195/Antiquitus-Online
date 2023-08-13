@@ -32,15 +32,15 @@ public class Weapon : Card
         List<Card> storecards = new List<Card>();
         WeaponBox storebox = player.chosenbox;
 
-        for (int i = 0; i < player.chosenbox.groupoftiles.Count; i++)
+        for (int i = 0; i < player.chosenbox.groupofTiles.Count; i++)
         {
-            storecards.Add(player.chosenbox.groupoftiles[i].mycard);
-            player.chosenbox.groupoftiles[i].pv.RPC("NullCard", RpcTarget.All);
+            storecards.Add(player.chosenbox.groupofTiles[i].mycard);
+            player.chosenbox.groupofTiles[i].pv.RPC("NullCard", RpcTarget.All);
         }
 
-        for (int i = 0; i < storebox.groupoftiles.Count; i++)
+        for (int i = 0; i < storebox.groupofTiles.Count; i++)
         {
-            storebox.groupoftiles[i].choicescript.enableBorder = true;
+            storebox.groupofTiles[i].choicescript.enableBorder = true;
             Manager.instance.instructions.text = $"Put a card on this tile.";
 
             for (int j = 0; j < storecards.Count; j++)
@@ -67,10 +67,18 @@ public class Weapon : Card
                 yield return null;
 
             Manager.instance.ClearButtons();
-            storebox.groupoftiles[i].choicescript.enableBorder = false;
+            storebox.groupofTiles[i].choicescript.enableBorder = false;
 
-            Manager.instance.listoftiles[storebox.groupoftiles[i].position].pv.RPC
-            ("NewCard", RpcTarget.All, nextCard.pv.ViewID, player.choice == "Face Up");
+            if (player.choice == "Face Up")
+            {
+                Manager.instance.listoftiles[storebox.groupofTiles[i].position].pv.RPC("NewCard", RpcTarget.All, nextCard.pv.ViewID, true);
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts {nextCard.logName} into the Site.");
+            }
+            else
+            {
+                Manager.instance.listoftiles[storebox.groupofTiles[i].position].pv.RPC("NewCard", RpcTarget.All, nextCard.pv.ViewID, false);
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts a card into the Site.");
+            }
         }
 
     }

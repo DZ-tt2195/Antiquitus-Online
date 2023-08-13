@@ -39,7 +39,9 @@ public class Bone : Card
             currentTile.pv.RPC("NewCard", RpcTarget.All, previousTile.mycard.pv.ViewID, previousTile.faceup);
             yield return new WaitForSeconds(0.05f);
         }
+
         myArrow.groupoftiles[0].pv.RPC("NullCard", RpcTarget.All);
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} knocks away {finalCard.logName}.");
         Manager.instance.AddCardButton(player, finalCard, false);
 
         Manager.instance.instructions.text = $"Put a card from your hand in the site.";
@@ -59,6 +61,8 @@ public class Bone : Card
         Manager.instance.ClearButtons();
 
         myArrow.groupoftiles[0].pv.RPC("NewCard", RpcTarget.All, player.chosencard.pv.ViewID, true);
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts {finalCard.logName} into the Site.");
+
         if (finalCard.eventtile)
         {
             yield return finalCard.OnDiscardEffect(player);

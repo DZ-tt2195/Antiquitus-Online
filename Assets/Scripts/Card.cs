@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
     [HideInInspector] public enum CardType { Coin, Bone, Weapon, Text, Treasure, CaveIn };
     [HideInInspector] public CardType type;
     [HideInInspector] public bool eventtile;
+    [HideInInspector] public string logName;
     public int rank;
 
     public PhotonView pv;
@@ -28,16 +29,26 @@ public class Card : MonoBehaviour
         switch (type)
         {
             case CardType.Coin:
+                logName = $"a Coin{rank}";
                 suitCode = 0 + rank;
                 break;
             case CardType.Bone:
+                logName = $"a Bone{rank}";
                 suitCode = 10 + rank;
                 break;
             case CardType.Weapon:
+                logName = $"a Weapon{rank}";
                 suitCode = 20 + rank;
                 break;
             case CardType.Text:
+                logName = $"a Text{rank}";
                 suitCode = 30 + rank;
+                break;
+            case CardType.Treasure:
+                logName = "a Treasure";
+                break;
+            case CardType.CaveIn:
+                logName = "a Cave In";
                 break;
         }
     }

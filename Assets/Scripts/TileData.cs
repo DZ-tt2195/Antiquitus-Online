@@ -14,18 +14,28 @@ public class TileData : MonoBehaviourPunCallbacks
     public bool faceup = false;
     public Sprite facedownsprite;
     public Card mycard;
-    public List<TileData> adjacenttiles = new List<TileData>();
+
+    [HideInInspector] public List<TileData> adjacentTiles = new List<TileData>();
 
     public PhotonView pv;
     public SendChoice choicescript;
     public Image image;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        this.name = $"Tile {position}";
         pv = GetComponent<PhotonView>();
         image = GetComponent<Image>();
         choicescript = GetComponent<SendChoice>();
+    }
+
+    private void Start()
+    {
+        adjacentTiles.Add(Manager.instance.FindTile(this.row - 1, this.column));
+        adjacentTiles.Add(Manager.instance.FindTile(this.row + 1, this.column));
+        adjacentTiles.Add(Manager.instance.FindTile(this.row, this.column - 1));
+        adjacentTiles.Add(Manager.instance.FindTile(this.row, this.column + 1));
     }
 
     [PunRPC]

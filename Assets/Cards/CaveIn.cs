@@ -16,6 +16,7 @@ public class CaveIn : Card
     {
         player.eventactivated = true;
         pv.RPC("TrashThis", RpcTarget.All, -1);
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} trashes {this.logName}.");
 
         int playertracker = player.playerposition;
 
