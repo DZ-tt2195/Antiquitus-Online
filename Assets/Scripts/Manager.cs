@@ -200,16 +200,18 @@ public class Manager : MonoBehaviour, IOnEventCallback
                 playerordergameobject[i].pv.RPC("RequestPlacard", RpcTarget.MasterClient, 2);
                 playerordergameobject[i].pv.RPC("RequestPlacard", RpcTarget.MasterClient, 4);
             }
+
+            yield return new WaitForSeconds(0.5f);
             gameon = true;
             while (gameon)
             {
                 for (int i = 0; i < playerordergameobject.Count; i++)
                 {
-                    yield return new WaitForSeconds(0.5f);
                     yield return playerordergameobject[i].TakeTurnRPC(playerordergameobject[i].photonplayer);
+                    yield return new WaitForSeconds(0.5f);
 
-                    if (remainingsubmissions == 0)
-                        break;
+                    if (remainingsubmissions <= 0)
+                        gameon = false;
                 }
             }
 

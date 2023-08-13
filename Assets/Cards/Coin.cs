@@ -15,6 +15,8 @@ public class Coin : Card
     public override IEnumerator OnTakeEffect(Player player)
     {
         int playertracker = player.playerposition;
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];

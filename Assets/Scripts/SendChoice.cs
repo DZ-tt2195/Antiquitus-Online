@@ -46,7 +46,7 @@ public class SendChoice : MonoBehaviour
         {
             border = this.transform.GetChild(0).GetComponent<Image>();
             border.transform.localPosition = new Vector2(0, 0);
-            border.rectTransform.sizeDelta = new Vector2(140, 100);
+            border.rectTransform.sizeDelta = new Vector2(140, 90);
         }
         else if (mytile != null)
         {

@@ -69,6 +69,7 @@ public class Weapon : Card
             Manager.instance.ClearButtons();
             storebox.groupofTiles[i].choicescript.enableBorder = false;
 
+            Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
             if (player.choice == "Face Up")
             {
                 Manager.instance.listoftiles[storebox.groupofTiles[i].position].pv.RPC("NewCard", RpcTarget.All, nextCard.pv.ViewID, true);

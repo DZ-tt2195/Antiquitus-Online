@@ -41,8 +41,9 @@ public class Bone : Card
         }
 
         myArrow.groupoftiles[0].pv.RPC("NullCard", RpcTarget.All);
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} knocks away {finalCard.logName}.");
         Manager.instance.AddCardButton(player, finalCard, false);
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} knocks away {finalCard.logName}.");
 
         Manager.instance.instructions.text = $"Put a card from your hand in the site.";
         myArrow.groupoftiles[0].choicescript.enableBorder = true;

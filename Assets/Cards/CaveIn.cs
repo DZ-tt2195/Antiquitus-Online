@@ -14,6 +14,7 @@ public class CaveIn : Card
 
     public override IEnumerator OnDiscardEffect(Player player)
     {
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
         player.eventactivated = true;
         pv.RPC("TrashThis", RpcTarget.All, -1);
         Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} trashes {this.logName}.");

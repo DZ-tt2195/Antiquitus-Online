@@ -14,9 +14,11 @@ public class Treasure : Card
 
     public override IEnumerator OnDiscardEffect(Player player)
     {
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
         player.eventactivated = true;
         pv.RPC("TrashThis", RpcTarget.All, -1);
-        
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} trashes {this.logName}.");
+
         int playertracker = player.playerposition;
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)

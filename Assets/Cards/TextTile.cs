@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class TextTile : Card
 {
@@ -13,6 +14,7 @@ public class TextTile : Card
 
     public override IEnumerator OnTakeEffect(Player player)
     {
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
         yield return TextManager.instance.WaitingTime(player);
     }
 }
