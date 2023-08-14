@@ -47,7 +47,6 @@ public class PlayerButton : MonoBehaviour, IPointerClickHandler
     public void MadeSubmission(string total, int[] placardIDs, int[] cardIDs)
     {
         SubmissionDepiction newSD = Instantiate(SD, depiction.transform);
-        newSD.transform.localScale = new Vector3(1, 1, 1);
         newSD.plusPoints.text = total;
         for (int i = 0; i<placardIDs.Length; i++)
             PhotonView.Find(placardIDs[i]).transform.SetParent(newSD.placards);

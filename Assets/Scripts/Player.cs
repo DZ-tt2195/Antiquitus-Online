@@ -209,6 +209,7 @@ public class Player : MonoBehaviourPunCallbacks
         cardIDs[0] = cardthisturn.pv.ViewID;
         photonView.RPC("SendDraw", RpcTarget.All, cardIDs);
         chosentile.pv.RPC("ReplaceCard", RpcTarget.MasterClient);
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
     }
 
     IEnumerator ResolveAdjacentTile(TileData nextTile)

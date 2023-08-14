@@ -32,6 +32,23 @@ public class Bone : Card
         BoneArrow myArrow = player.chosenarrow;
         Card finalCard = myArrow.groupoftiles[4].mycard;
 
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+        switch (myArrow.direction)
+        {
+            case BoneArrow.Direction.up:
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column} upwards.");
+                break;
+            case BoneArrow.Direction.down:
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column} downwards.");
+                break;
+            case BoneArrow.Direction.left:
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row} to the left.");
+                break;
+            case BoneArrow.Direction.right:
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row} to the right.");
+                break;
+        }
+
         for (int i = 4; i>0; i--)
         {
             TileData currentTile = Manager.instance.listoftiles[myArrow.groupoftiles[i].position];
@@ -42,7 +59,6 @@ public class Bone : Card
 
         myArrow.groupoftiles[0].pv.RPC("NullCard", RpcTarget.All);
         Manager.instance.AddCardButton(player, finalCard, false);
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
         Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} knocks away {finalCard.logName}.");
 
         Manager.instance.instructions.text = $"Put a card from your hand in the site.";

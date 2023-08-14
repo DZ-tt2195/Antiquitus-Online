@@ -24,9 +24,9 @@ public class DragScript : MonoBehaviour
         else if (this.transform.localPosition.x > 800)
             this.transform.localPosition = new Vector3(800, transform.localPosition.y, 0);
 
-        if (this.transform.localPosition.y < -800)
-            this.transform.localPosition = new Vector3(transform.localPosition.x, -800, 0);
-        else if (this.transform.localPosition.y > 800)
-            this.transform.localPosition = new Vector3(transform.localPosition.x, 800, 0);
+        if (this.transform.localPosition.y < -625)
+            this.transform.localPosition = new Vector3(transform.localPosition.x, -625, 0);
+        else if (this.transform.localPosition.y > 625)
+            this.transform.localPosition = new Vector3(transform.localPosition.x, 625, 0);
     }
 }

@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class Weapon : Card
 {
-    // Start is called before the first frame update
     public override void Setup()
     {
         type = CardType.Weapon;
@@ -34,9 +33,15 @@ public class Weapon : Card
 
         for (int i = 0; i < player.chosenbox.groupofTiles.Count; i++)
         {
-            storecards.Add(player.chosenbox.groupofTiles[i].mycard);
-            player.chosenbox.groupofTiles[i].pv.RPC("NullCard", RpcTarget.All);
+            Card nextCard = player.chosenbox.groupofTiles[i].mycard;
+            if (nextCard != null)
+            {
+                storecards.Add(nextCard);
+                player.chosenbox.groupofTiles[i].pv.RPC("NullCard", RpcTarget.All);
+            }
         }
+
+        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
 
         for (int i = 0; i < storebox.groupofTiles.Count; i++)
         {
@@ -69,7 +74,6 @@ public class Weapon : Card
             Manager.instance.ClearButtons();
             storebox.groupofTiles[i].choicescript.enableBorder = false;
 
-            Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
             if (player.choice == "Face Up")
             {
                 Manager.instance.listoftiles[storebox.groupofTiles[i].position].pv.RPC("NewCard", RpcTarget.All, nextCard.pv.ViewID, true);
