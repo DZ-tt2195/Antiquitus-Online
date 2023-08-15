@@ -36,16 +36,16 @@ public class Bone : Card
         switch (myArrow.direction)
         {
             case BoneArrow.Direction.up:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column} upwards.");
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column+1} upwards.");
                 break;
             case BoneArrow.Direction.down:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column} downwards.");
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column+1} downwards.");
                 break;
             case BoneArrow.Direction.left:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row} to the left.");
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row+1} to the left.");
                 break;
             case BoneArrow.Direction.right:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row} to the right.");
+                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row+1} to the right.");
                 break;
         }
 
