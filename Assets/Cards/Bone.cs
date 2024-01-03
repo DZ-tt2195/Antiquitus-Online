@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class Bone : Card
 {
-    // Start is called before the first frame update
     public override void Setup()
     {
         type = CardType.Bone;

@@ -5,15 +5,16 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using UnityEngine.EventSystems;
+using MyBox;
 
 public class PlayerButton : MonoBehaviour, IPointerClickHandler
 {
-    [HideInInspector] public Image image;
-    [HideInInspector] public TMP_Text textbox;
-    [HideInInspector] public Button button;
-    [HideInInspector] public PhotonView pv;
+    [ReadOnly] public Image image;
+    [ReadOnly] public TMP_Text textbox;
+    [ReadOnly] public Button button;
+    [ReadOnly] public PhotonView pv;
     public SubmissionDepiction SD;
-    [HideInInspector] public GameObject depiction;
+    [ReadOnly] public GameObject depiction;
 
     private void Awake()
     {

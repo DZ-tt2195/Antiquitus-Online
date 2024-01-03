@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using ExitGames.Client.Photon;
 using Photon.Realtime;
 using System.Linq;
+using MyBox;
 
 public class Player : MonoBehaviourPunCallbacks
 {
@@ -29,12 +30,12 @@ public class Player : MonoBehaviourPunCallbacks
     [HideInInspector] public bool waiting;
     [HideInInspector] public bool turnon;
 
-    [HideInInspector] public string choice;
-    [HideInInspector] public Placard chosenPlacard;
-    [HideInInspector] public Card chosencard;
-    [HideInInspector] public TileData chosentile;
-    [HideInInspector] public WeaponBox chosenbox;
-    [HideInInspector] public BoneArrow chosenarrow;
+    [ReadOnly] public string choice;
+    [ReadOnly] public Placard chosenPlacard;
+    [ReadOnly] public Card chosencard;
+    [ReadOnly] public TileData chosentile;
+    [ReadOnly] public WeaponBox chosenbox;
+    [ReadOnly] public BoneArrow chosenarrow;
 
     public Card cardthisturn;
     public TileData tilethisturn;
@@ -44,7 +45,7 @@ public class Player : MonoBehaviourPunCallbacks
 
     [HideInInspector] public int turns;
     public int reputation;
-    [HideInInspector] public int personalsubmissions;
+    [ReadOnly] public int personalsubmissions;
 
     private void Awake()
     {

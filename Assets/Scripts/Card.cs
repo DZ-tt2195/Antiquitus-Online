@@ -4,19 +4,20 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using System.Linq;
+using MyBox;
 
 public class Card : MonoBehaviour
 {
-    [HideInInspector] public enum CardType { Coin, Bone, Weapon, Text, Treasure, CaveIn };
-    [HideInInspector] public CardType type;
-    [HideInInspector] public bool eventtile;
-    [HideInInspector] public string logName;
+    public enum CardType { Coin, Bone, Weapon, Text, Treasure, CaveIn };
+    [ReadOnly] public CardType type;
+    [ReadOnly] public bool eventtile;
+    [ReadOnly] public string logName;
     public int rank;
 
-    [HideInInspector] public PhotonView pv;
-    [HideInInspector] public Image image;
-    [HideInInspector] public SendChoice choicescript;
-    [HideInInspector] public int suitCode;
+    [ReadOnly] public PhotonView pv;
+    [ReadOnly] public Image image;
+    [ReadOnly] public SendChoice choicescript;
+    [ReadOnly] public int suitCode;
 
     private void Awake()
     {
@@ -25,7 +26,6 @@ public class Card : MonoBehaviour
         choicescript = GetComponent<SendChoice>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         Setup();

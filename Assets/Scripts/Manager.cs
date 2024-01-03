@@ -9,67 +9,76 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using MyBox;
 
 public class Manager : MonoBehaviour, IOnEventCallback
 {
+
+#region Variables
+
     public static Manager instance;
-    public int remainingsubmissions;
-    public List<PlayerButton> playerButtonClone;
 
-    public Sprite back1;
-    public Sprite back2;
-    public Sprite back4;
+    [ReadOnly] public const byte AddNextPlayerEvent = 1;
+    [ReadOnly] public const byte AssignCardToSiteEvent = 2;
+    [ReadOnly] public const byte SubmissionEvent = 3;
+    [ReadOnly] public const byte GameOverEvent = 4;
 
-    Transform abilityCollector;
-    Transform textCollector;
-    public SendChoice cardButton;
-    public SendChoice textButton;
-    public SendChoice placardButton;
-    List<SendChoice> buttonsInCollector = new List<SendChoice>();
+    [Foldout("Prefabs", true)]
+        [SerializeField] List<PlayerButton> playerButtonClone;
+        public Sprite back1;
+        public Sprite back2;
+        public Sprite back4;
+        [SerializeField] SendChoice cardButton;
+        [SerializeField] SendChoice textButton;
+        [SerializeField] SendChoice placardButton;
+    
+    [Foldout("Lists", true)]
+        public int remainingsubmissions;
+        [ReadOnly] public List<TileData> listoftiles = new List<TileData>();
+        public List<BoneArrow> listofarrows = new List<BoneArrow>();
+        public List<WeaponBox> listofboxes = new List<WeaponBox>();
+        [ReadOnly] public List<Player> playerordergameobject = new List<Player>();
+        [ReadOnly] public List<Photon.Realtime.Player> playerorderphotonlist = new List<Photon.Realtime.Player>();
 
-    public List<TileData> listoftiles = new List<TileData>();
-    public List<BoneArrow> listofarrows = new List<BoneArrow>();
-    public List<WeaponBox> listofboxes = new List<WeaponBox>();
+    [Foldout("Zones", true)]
+        [ReadOnly] public Transform trash;
+        [ReadOnly] public TMP_Text instructions;
+        [ReadOnly] public Transform deck;
+        [ReadOnly] public Transform discard;
+        [ReadOnly] public Transform rep1deck;
+        [ReadOnly] public Transform rep2deck;
+        [ReadOnly] public Transform rep4deck;
 
-    [HideInInspector] public Transform trash;
-    [HideInInspector] public TMP_Text instructions;
-    [HideInInspector] public Transform deck;
-    [HideInInspector] public Transform discard;
-    [HideInInspector] public Transform rep1deck;
-    [HideInInspector] public Transform rep2deck;
-    [HideInInspector] public Transform rep4deck;
+    [Foldout("UI", true)]
+        Transform abilityCollector;
+        Transform textCollector;
+        List<SendChoice> buttonsInCollector = new List<SendChoice>();
+        [ReadOnly] public GameObject blownUp;
+        [ReadOnly] public TMP_Text endText;
+        [ReadOnly] public Button leaveRoom;
+        Button sortingButton;
+        TMP_Text submissionText;
+        TMP_Text sortingText;
 
-    [HideInInspector] public List<Player> playerordergameobject = new List<Player>();
-    [HideInInspector] public List<Photon.Realtime.Player> playerorderphotonlist = new List<Photon.Realtime.Player>();
+    [Foldout("Misc", true)]
+        [ReadOnly] public float opacity = 1;
+        [ReadOnly] public bool decrease = true;
+        [ReadOnly] public bool gameon = false;
+        public enum Sorting { suit, rank }
+        [ReadOnly] public Sorting sorting = Sorting.suit;
 
-    [HideInInspector] public float opacity = 1;
-    [HideInInspector] public bool decrease = true;
-    [HideInInspector] public bool gameon = false;
+    #endregion
 
-    public enum Sorting { suit, rank }
-    public Sorting sorting = Sorting.suit;
+#region Setup
 
-    [HideInInspector] public const byte AddNextPlayerEvent = 1;
-    [HideInInspector] public const byte AssignCardToSiteEvent = 2;
-    [HideInInspector] public const byte SubmissionEvent = 3;
-    [HideInInspector] public const byte GameOverEvent = 4;
-
-    Button sortingButton;
-    TMP_Text submissionText;
-    TMP_Text sortingText;
-
-    public GameObject blownUp;
-    public TMP_Text endText;
-    public Button leaveRoom;
-
-    private void FixedUpdate()
+    private void OnEnable()
     {
-        if (decrease)
-            opacity -= 0.05f;
-        else
-            opacity += 0.05f;
-        if (opacity < 0 || opacity > 1)
-            decrease = !decrease;
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 
     void Awake()
@@ -87,43 +96,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
         sortingButton = GameObject.Find("Sorting Button").GetComponent<Button>();
         sortingText = sortingButton.GetComponentInChildren<TMP_Text>();
         sortingButton.onClick.AddListener(ChangeSorting);
-    }
-
-    public void Update()
-    {
-        submissionText.text = $"{remainingsubmissions} Submissions Left";
-        if (Input.GetMouseButtonDown(0))
-            blownUp.SetActive(false);
-    }
-
-    public void ChangeSorting()
-    {
-        if (sorting == Sorting.suit)
-        {
-            sorting = Sorting.rank;
-            sortingText.text = "Sorted by rank";
-            for (int i = 0; i < playerordergameobject.Count; i++)
-            {
-                playerordergameobject[i].SortHandByRank();
-            }
-        }
-        else
-        {
-            sorting = Sorting.suit;
-            sortingText.text = "Sorted by suit";
-            for (int i = 0; i < playerordergameobject.Count; i++)
-            {
-                playerordergameobject[i].SortHandBySuit();
-            }
-        }
-    }
-
-    public TileData FindTile(int row, int col)
-    {
-        if (row < 0 || row > 4 || col < 0 || col > 4)
-            return null;
-        else
-            return this.listoftiles[row * 5 + col];
     }
 
     void Start()
@@ -147,7 +119,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
     IEnumerator WaitForPlayer()
     {
         remainingsubmissions = 3 * PhotonNetwork.CurrentRoom.MaxPlayers;
-        GameObject x = GameObject.Find("Store Players").gameObject;
+        GameObject x = GameObject.Find("Store Players");
         while (x.transform.childCount < PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             instructions.text = $"Waiting for more players...({PhotonNetwork.PlayerList.Length}/{PhotonNetwork.CurrentRoom.MaxPlayers})";
@@ -177,7 +149,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
                 PhotonNetwork.RaiseEvent(AddNextPlayerEvent, sendingdata, raiseEventOptions, SendOptions.SendReliable);
             }
 
-            for (int i = 0; i<listoftiles.Count; i++)
+            for (int i = 0; i < listoftiles.Count; i++)
             {
                 object[] sendingdata = new object[1];
                 sendingdata[0] = i;
@@ -216,6 +188,49 @@ public class Manager : MonoBehaviour, IOnEventCallback
             }
 
             GameOver("All submissions have been made.", -1);
+        }
+    }
+
+#endregion
+
+#region Gameplay
+
+    private void FixedUpdate()
+    {
+        if (decrease)
+            opacity -= 0.05f;
+        else
+            opacity += 0.05f;
+        if (opacity < 0 || opacity > 1)
+            decrease = !decrease;
+    }
+
+    public void Update()
+    {
+        submissionText.text = $"{remainingsubmissions} Submissions Left";
+        if (Input.GetMouseButtonDown(0))
+            blownUp.SetActive(false);
+    }
+
+    public void ChangeSorting()
+    {
+        if (sorting == Sorting.suit)
+        {
+            sorting = Sorting.rank;
+            sortingText.text = "Sorted by rank";
+            for (int i = 0; i < playerordergameobject.Count; i++)
+            {
+                playerordergameobject[i].SortHandByRank();
+            }
+        }
+        else
+        {
+            sorting = Sorting.suit;
+            sortingText.text = "Sorted by suit";
+            for (int i = 0; i < playerordergameobject.Count; i++)
+            {
+                playerordergameobject[i].SortHandBySuit();
+            }
         }
     }
 
@@ -298,7 +313,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
             endText.text = "";
             int playerTracker = 1;
 
-            for (int i = 0; i< playerordergameobject.Count; i++)
+            for (int i = 0; i < playerordergameobject.Count; i++)
             {
                 if (i != resigningPlayer)
                 {
@@ -311,14 +326,16 @@ public class Manager : MonoBehaviour, IOnEventCallback
         }
     }
 
-    private void OnEnable()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
-    }
+    #endregion
 
-    private void OnDisable()
+#region Misc
+
+    public TileData FindTile(int row, int col)
     {
-        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+        if (row < 0 || row > 4 || col < 0 || col > 4)
+            return null;
+        else
+            return this.listoftiles[row * 5 + col];
     }
 
     public void AddCardButton(Player player, Card card, bool enabled)
@@ -383,4 +400,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("1. Lobby");
     }
+
+#endregion
+
 }

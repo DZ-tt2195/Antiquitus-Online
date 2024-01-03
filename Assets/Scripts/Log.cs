@@ -4,14 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Photon.Pun;
+using MyBox;
 
 public class Log : MonoBehaviour
 {
     public static Log instance;
-    [HideInInspector] public PhotonView pv;
-    [HideInInspector] TMP_Text textBox;
-    [HideInInspector] RectTransform textRT;
-    [HideInInspector] Scrollbar scroll;
+    [ReadOnly] public PhotonView pv;
+    [ReadOnly] TMP_Text textBox;
+    [ReadOnly] RectTransform textRT;
+    [ReadOnly] Scrollbar scroll;
     int linesOfText = 0;
 
     private void Awake()

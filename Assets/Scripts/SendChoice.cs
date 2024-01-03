@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using MyBox;
 
 public class SendChoice : MonoBehaviour
 {
-    [HideInInspector] public Player choosingplayer;
-    public Button button;
-    public Image image;
+    [ReadOnly] public Player choosingplayer;
+    [SerializeField] Button button;
+    [ReadOnly] public Image image;
 
     public TMP_Text textbox;
-    public Image border;
-    [HideInInspector] public bool enableBorder;
+    [SerializeField] Image border;
+    [ReadOnly] public bool enableBorder;
 
-    [HideInInspector] public Card card;
-    [HideInInspector] public TileData mytile;
-    [HideInInspector] public WeaponBox mybox;
-    [HideInInspector] public BoneArrow myarrow;
-    [HideInInspector] public Placard myPlacard;
+    [ReadOnly] public Card card;
+    [ReadOnly] public TileData mytile;
+    [ReadOnly] public WeaponBox mybox;
+    [ReadOnly] public BoneArrow myarrow;
+    [ReadOnly] public Placard myPlacard;
 
     // Start is called before the first frame update
     void Awake()
@@ -52,7 +53,7 @@ public class SendChoice : MonoBehaviour
         {
             border = this.transform.GetChild(0).GetComponent<Image>();
             border.transform.localPosition = new Vector2(0, 0);
-            border.rectTransform.sizeDelta = new Vector2(280, 280);
+            border.rectTransform.sizeDelta = new Vector2(175, 175);
         }
     }
 

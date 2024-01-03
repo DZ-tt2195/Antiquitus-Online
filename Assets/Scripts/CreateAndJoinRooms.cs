@@ -37,7 +37,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         error.gameObject.SetActive(false);
     }
 
-    public void CreateRoom()
+    public void CreateRoom(int playercount)
     {
         if (create.text == "")
         {
@@ -48,9 +48,9 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             StartCoroutine(ErrorMessage("You forgot to type in a username."));
         }
         else
-        { 
+        {
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = (byte)2;
+            roomOptions.MaxPlayers = (byte)playercount;
             PhotonNetwork.CreateRoom(create.text.ToUpper(), roomOptions, null);
         }
     }
