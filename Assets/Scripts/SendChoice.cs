@@ -13,7 +13,7 @@ public class SendChoice : MonoBehaviour
 
     public TMP_Text textbox;
     [SerializeField] Image border;
-    [ReadOnly] public bool enableBorder;
+    [ReadOnly] public bool enableBorder = false;
 
     [ReadOnly] public Card card;
     [ReadOnly] public TileData mytile;
@@ -21,7 +21,6 @@ public class SendChoice : MonoBehaviour
     [ReadOnly] public BoneArrow myarrow;
     [ReadOnly] public Placard myPlacard;
 
-    // Start is called before the first frame update
     void Awake()
     {
         button = this.GetComponent<Button>();
@@ -41,13 +40,13 @@ public class SendChoice : MonoBehaviour
         {
             border = this.transform.GetChild(0).GetComponent<Image>();
             border.transform.localPosition = new Vector2(0, 0);
-            border.rectTransform.sizeDelta = new Vector2(120, 120);
+            border.rectTransform.sizeDelta = new Vector2(175, 175);
         }
         else if (myPlacard != null)
         {
             border = this.transform.GetChild(0).GetComponent<Image>();
             border.transform.localPosition = new Vector2(0, 0);
-            border.rectTransform.sizeDelta = new Vector2(140, 90);
+            border.rectTransform.sizeDelta = new Vector2(260, 180);
         }
         else if (mytile != null)
         {
@@ -61,11 +60,11 @@ public class SendChoice : MonoBehaviour
     {
         if (border != null && enableBorder)
         {
-            border.color = new Color(1, 1, 1, Manager.instance.opacity);
+            border.SetAlpha(Manager.instance.opacity);
         }
         else if (border != null && !enableBorder)
         {
-            border.color = new Color(1, 1, 1, 0);
+            border.SetAlpha(0);
         }
     }
 

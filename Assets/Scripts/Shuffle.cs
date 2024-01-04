@@ -6,7 +6,6 @@ public static class MyExtensions
 {
     public static void Shuffle(this Transform list)
     {
-        Debug.Log($"Shuffling {list.name} with {list.childCount} objects");
         List<int> indexes = new List<int>();
         List<Transform> items = new List<Transform>();
 

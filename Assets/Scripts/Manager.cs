@@ -352,7 +352,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
     public void AddPlacardButton(Player player, Placard placard, bool enabled)
     {
         abilityCollector.gameObject.SetActive(true);
-        SendChoice nextCard = Instantiate(placardButton, abilityCollector.GetChild(1));
+        SendChoice nextCard = Instantiate(placardButton, abilityCollector.GetChild(2));
         nextCard.myPlacard = placard;
         nextCard.image.sprite = placard.image.sprite;
         if (enabled)
