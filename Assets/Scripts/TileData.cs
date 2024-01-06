@@ -5,28 +5,25 @@ using UnityEngine.UI;
 using Photon.Pun;
 using ExitGames.Client.Photon;
 using Photon.Realtime;
+using MyBox;
+using Unity.VisualScripting;
 
 public class TileData : MonoBehaviourPunCallbacks
 {
-    public int row;
-    public int column;
-    public int position;
-    public bool faceup = false;
-    public Sprite facedownsprite;
-    public Card mycard;
+    [ReadOnly] public int row;
+    [ReadOnly] public int column;
+    [ReadOnly] public int position;
+    [ReadOnly] public Sprite facedownsprite;
+    [ReadOnly] public Card mycard;
 
-    [HideInInspector] public List<TileData> adjacentTiles = new List<TileData>();
+    [ReadOnly] public List<TileData> adjacentTiles = new List<TileData>();
+    [ReadOnly] PhotonView pv;
+    [ReadOnly] public SendChoice choicescript;
 
-    [HideInInspector] public PhotonView pv;
-    [HideInInspector] public SendChoice choicescript;
-    [HideInInspector] public Image image;
-
-    // Start is called before the first frame update
     void Awake()
     {
         this.name = $"Tile {position}";
         pv = GetComponent<PhotonView>();
-        image = GetComponent<Image>();
         choicescript = GetComponent<SendChoice>();
     }
 
@@ -38,49 +35,88 @@ public class TileData : MonoBehaviourPunCallbacks
         adjacentTiles.Add(Manager.instance.FindTile(this.row, this.column + 1));
     }
 
-    [PunRPC]
-    public void NullCard()
+    public void NullCardRPC()
     {
-        mycard = null;
-        image.sprite = null;
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("NullCard", RpcTarget.All);
+        else
+            NullCard();
     }
 
     [PunRPC]
-    public void ReplaceCard()
+    void NullCard()
     {
-        object[] sendingdata = new object[1];
-        sendingdata[0] = this.position;
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        { Receivers = ReceiverGroup.MasterClient };
-        PhotonNetwork.RaiseEvent(Manager.AssignCardToSiteEvent, sendingdata, raiseEventOptions, SendOptions.SendReliable);
-    }
-
-    [PunRPC]
-    public void NewCard(int cardID, bool x)
-    {
-        mycard = PhotonView.Find(cardID).gameObject.GetComponent<Card>();
-        mycard.transform.SetParent(null);
-        this.pv.RPC("FlipTile", RpcTarget.All, x);
-    }
-
-    [PunRPC]
-    public void FlipTile()
-    {
-        this.pv.RPC("FlipTile", RpcTarget.All, !faceup);
-    }
-
-    [PunRPC]
-    public void FlipTile(bool x)
-    {
-        if (x)
+        if (mycard != null)
         {
-            this.image.sprite = mycard.image.sprite;
-            faceup = true;
+            mycard.transform.SetParent(Manager.instance.discard);
+            StartCoroutine(mycard.MoveCard(new Vector2(-2000, -330), new Vector3(0, 0, 0), 0.3f));
+            mycard = null;
+        }
+    }
+
+    public void CardFromDeckRPC()
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            pv.RPC("CardFromDeck", RpcTarget.MasterClient);
         }
         else
         {
-            this.image.sprite = facedownsprite;
-            faceup = false;
+            CardFromDeck();
         }
     }
+
+    [PunRPC]
+    void CardFromDeck()
+    {
+        if (Manager.instance.deck.childCount == 0)
+        {
+            Manager.instance.discard.Shuffle();
+            while (Manager.instance.discard.childCount > 0)
+                Manager.instance.discard.GetChild(0).SetParent(Manager.instance.deck);
+        }
+
+        NewCardRPC(Manager.instance.deck.GetChild(0).GetComponent<Card>(), false);
+    }
+
+    public void NewCardRPC(Card card, bool faceUp)
+    {
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("NewCard", RpcTarget.All, card.pv.ViewID, faceUp);
+        else
+            NewCard(card, faceUp);
+    }
+
+    void NewCard(Card card, bool faceUp)
+    {
+        mycard = card;
+        card.transform.SetParent(this.transform);
+        card.transform.SetAsFirstSibling();
+        card.image.sprite = faceUp ? card.originalSprite : facedownsprite;
+        StartCoroutine(card.MoveCard(new Vector2(0, 0), new Vector3(0, 0), 0.3f));
+    }
+
+    [PunRPC]
+    void NewCard(int cardID, bool faceUp)
+    {
+        NewCard(PhotonView.Find(cardID).gameObject.GetComponent<Card>(), faceUp);
+    }
+
+    public void FlipCardRPC(bool faceUp)
+    {
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("FlipCard", RpcTarget.All, faceUp);
+        else
+            FlipCard(faceUp);
+    }
+
+    [PunRPC]
+    void FlipCard(bool faceUp)
+    {
+        if (mycard != null)
+        {
+            StartCoroutine(mycard.FlipCard(0.2f, faceUp ? mycard.originalSprite : facedownsprite));
+        }
+    }
+
 }

@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class Treasure : Card
 {
-    // Start is called before the first frame update
     public override void Setup()
     {
         type = CardType.Treasure;
@@ -23,7 +22,7 @@ public class Treasure : Card
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
-            nextplayer.pv.RPC("RequestDraw", RpcTarget.MasterClient, 1);
+            nextplayer.DrawCardRPC(1);
             yield return new WaitForSeconds(0.5f);
             playertracker = (playertracker == Manager.instance.playerordergameobject.Count - 1) ? 0 : playertracker + 1;
         }

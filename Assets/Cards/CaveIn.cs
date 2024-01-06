@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class CaveIn : Card
 {
-    // Start is called before the first frame update
     public override void Setup()
     {
         type = CardType.CaveIn;
@@ -23,7 +22,7 @@ public class CaveIn : Card
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
-            nextplayer.pv.RPC("TrashPlacard", nextplayer.photonplayer, player.photonplayer);
+            nextplayer.pv.RPC("TrashPlacard", nextplayer.pv.Controller, player.pv.Controller);
             player.waiting = true;
             while (player.waiting)
                 yield return null;

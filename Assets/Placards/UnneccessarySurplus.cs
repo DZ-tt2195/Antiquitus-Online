@@ -11,7 +11,7 @@ public class UnneccessarySurplus : Placard
 
     public override bool CanSubmit(Player player, List<Card> submittedtiles)
     {
-        return ((player.cardhand.childCount - submittedtiles.Count) >= 3);
+        return ((player.listOfHand.Count - submittedtiles.Count) >= 3);
     }
 
 }

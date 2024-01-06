@@ -52,11 +52,11 @@ public class Bone : Card
         {
             TileData currentTile = Manager.instance.listoftiles[myArrow.groupoftiles[i].position];
             TileData previousTile = Manager.instance.listoftiles[myArrow.groupoftiles[i-1].position];
-            currentTile.pv.RPC("NewCard", RpcTarget.All, previousTile.mycard.pv.ViewID, previousTile.faceup);
+            currentTile.NewCardRPC(previousTile.mycard, previousTile.mycard.IsPublic());
             yield return new WaitForSeconds(0.05f);
         }
 
-        myArrow.groupoftiles[0].pv.RPC("NullCard", RpcTarget.All);
+        myArrow.groupoftiles[0].NullCardRPC();
         Manager.instance.AddCardButton(player, finalCard, false);
         Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} knocks away {finalCard.logName}.");
 
@@ -76,7 +76,8 @@ public class Bone : Card
             player.listOfHand[i].choicescript.DisableButton();
         Manager.instance.ClearButtons();
 
-        myArrow.groupoftiles[0].pv.RPC("NewCard", RpcTarget.All, player.chosencard.pv.ViewID, true);
+        player.listOfHand.Remove(player.chosencard);
+        myArrow.groupoftiles[0].NewCardRPC(player.chosencard, true);
         Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts {finalCard.logName} into the Site.");
 
         if (finalCard.eventtile)

@@ -11,6 +11,6 @@ public class PerfectFit : Placard
 
     public override bool CanSubmit(Player player, List<Card> submittedtiles)
     {
-        return ((player.cardhand.childCount - submittedtiles.Count) == 0);
+        return ((player.listOfHand.Count - submittedtiles.Count) == 0);
     }
 }

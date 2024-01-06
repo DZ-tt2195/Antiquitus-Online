@@ -580,6 +580,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &12268214
@@ -939,6 +940,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &22598162
@@ -1544,6 +1546,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &60071246
@@ -1844,13 +1847,10 @@ MonoBehaviour:
   row: 0
   column: 0
   position: 0
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 62581084}
   choicescript: {fileID: 62581079}
-  image: {fileID: 62581082}
 --- !u!114 &62581081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,7 +1915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2074,6 +2074,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &68531966
@@ -2583,6 +2584,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &96403112
@@ -3272,6 +3274,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &104167658
@@ -3536,7 +3539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1082.9935, y: 3464.6355}
+  m_AnchoredPosition: {x: 1082.9935, y: 5062}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &114032253
@@ -3675,6 +3678,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &116073047
@@ -4170,11 +4174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_LocalScale.x
@@ -4322,6 +4326,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &149998969
@@ -4720,6 +4725,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &157524840
@@ -5056,13 +5062,10 @@ MonoBehaviour:
   row: 4
   column: 3
   position: 23
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 164697733}
   choicescript: {fileID: 164697728}
-  image: {fileID: 164697731}
 --- !u!114 &164697730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5127,7 +5130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5477,6 +5480,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &194453359
@@ -6036,6 +6040,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &216479656
@@ -6325,11 +6330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_LocalScale.x
@@ -7889,13 +7894,10 @@ MonoBehaviour:
   row: 3
   column: 4
   position: 19
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 298755486}
   choicescript: {fileID: 298755481}
-  image: {fileID: 298755484}
 --- !u!114 &298755483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7960,7 +7962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8492,13 +8494,10 @@ MonoBehaviour:
   row: 0
   column: 3
   position: 3
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 321500051}
   choicescript: {fileID: 321500046}
-  image: {fileID: 321500049}
 --- !u!114 &321500048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8563,7 +8562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8663,7 +8662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 567.53186, y: 3464.6355}
+  m_AnchoredPosition: {x: 567.53186, y: 5062}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &332225486
@@ -8727,6 +8726,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &332225489
@@ -8950,13 +8950,10 @@ MonoBehaviour:
   row: 3
   column: 1
   position: 16
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 336038352}
   choicescript: {fileID: 336038347}
-  image: {fileID: 336038350}
 --- !u!114 &336038349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9021,7 +9018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9210,6 +9207,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &346866129
@@ -9413,6 +9411,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &355751598
@@ -9787,13 +9786,10 @@ MonoBehaviour:
   row: 3
   column: 0
   position: 15
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 373046606}
   choicescript: {fileID: 373046601}
-  image: {fileID: 373046604}
 --- !u!114 &373046603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9858,7 +9854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10379,6 +10375,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &391471649
@@ -10632,13 +10629,10 @@ MonoBehaviour:
   row: 2
   column: 1
   position: 11
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 398965411}
   choicescript: {fileID: 398965406}
-  image: {fileID: 398965409}
 --- !u!114 &398965408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10703,7 +10697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10937,6 +10931,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &413563049
@@ -12052,6 +12047,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &451688397
@@ -12491,6 +12487,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &460363408
@@ -12907,13 +12904,10 @@ MonoBehaviour:
   row: 0
   column: 4
   position: 4
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 473986060}
   choicescript: {fileID: 473986055}
-  image: {fileID: 473986058}
 --- !u!114 &473986057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12978,7 +12972,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13463,13 +13457,10 @@ MonoBehaviour:
   row: 3
   column: 3
   position: 18
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 502445425}
   choicescript: {fileID: 502445420}
-  image: {fileID: 502445423}
 --- !u!114 &502445422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13534,7 +13525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13648,6 +13639,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &502469100
@@ -14403,13 +14395,10 @@ MonoBehaviour:
   row: 2
   column: 2
   position: 12
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 540691507}
   choicescript: {fileID: 540691502}
-  image: {fileID: 540691505}
 --- !u!114 &540691504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14474,7 +14463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14864,6 +14853,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &565020159
@@ -15341,6 +15331,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &580895802
@@ -15589,6 +15580,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &589678179
@@ -15747,6 +15739,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &599151131
@@ -16025,6 +16018,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &618599419
@@ -16249,13 +16243,10 @@ MonoBehaviour:
   row: 4
   column: 2
   position: 22
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 626396008}
   choicescript: {fileID: 626396003}
-  image: {fileID: 626396006}
 --- !u!114 &626396005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16320,7 +16311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16755,6 +16746,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &637885836
@@ -17339,6 +17331,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &676270315
@@ -18334,6 +18327,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &700324199
@@ -18537,6 +18531,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &700664397
@@ -19858,6 +19853,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &771281747
@@ -20495,6 +20491,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &786857418
@@ -20937,6 +20934,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &806401381
@@ -21140,6 +21138,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &814125474
@@ -22265,7 +22264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46.842407, y: 3464.6355}
+  m_AnchoredPosition: {x: 46.842407, y: 5062}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &886590629
@@ -22404,6 +22403,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &902614641
@@ -23064,13 +23064,10 @@ MonoBehaviour:
   row: 1
   column: 1
   position: 6
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 929052585}
   choicescript: {fileID: 929052580}
-  image: {fileID: 929052583}
 --- !u!114 &929052582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23135,7 +23132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23300,7 +23297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46.842407, y: 2916.7617}
+  m_AnchoredPosition: {x: 46.842407, y: 4514.126}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &936481976
@@ -24639,6 +24636,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &993633852
@@ -24818,13 +24816,10 @@ MonoBehaviour:
   row: 4
   column: 1
   position: 21
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 995046037}
   choicescript: {fileID: 995046032}
-  image: {fileID: 995046035}
 --- !u!114 &995046034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24889,7 +24884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25751,6 +25746,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1035054323
@@ -26305,6 +26301,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1060263894
@@ -27153,6 +27150,7 @@ MonoBehaviour:
   back1: {fileID: 21300000, guid: 8f4fe5daf2fd94d2cbc7576e415e7f3e, type: 3}
   back2: {fileID: 21300000, guid: bdf870edbc4ad4eddafbbace8f5f3b39, type: 3}
   back4: {fileID: 21300000, guid: a6da66789a9e646da9f863235d94e6d5, type: 3}
+  playerClone: {fileID: 1577680437094871516, guid: cc6678bd2d7b6423d98dcbbf0fc1c90e, type: 3}
   cardButton: {fileID: 6669486577676071062, guid: 61c5e710a0bdb4a21ab0804ed34eb7af, type: 3}
   textButton: {fileID: 4095745869081134490, guid: 830e4ca372b364a56bed3445a496ce65, type: 3}
   placardButton: {fileID: 8708569598133133264, guid: 5d9b35288bfc44adabfc7b31ec6758c3, type: 3}
@@ -27984,7 +27982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1118.9583, y: 2154.5476}
+  m_AnchoredPosition: {x: -1118.9583, y: 490}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1124675064
@@ -28123,6 +28121,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1125863673
@@ -28647,6 +28646,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1138591785
@@ -29450,6 +29450,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1222368848
@@ -29589,11 +29590,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_LocalScale.x
@@ -29762,13 +29763,10 @@ MonoBehaviour:
   row: 2
   column: 4
   position: 14
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1227140153}
   choicescript: {fileID: 1227140148}
-  image: {fileID: 1227140151}
 --- !u!114 &1227140150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29833,7 +29831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30022,6 +30020,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1229532158
@@ -30632,11 +30631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3284067089924442197, guid: 9d76a606e45b24c8a87977713db76f95, type: 3}
       propertyPath: m_LocalScale.x
@@ -30957,6 +30956,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1250396850
@@ -31162,7 +31162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31218,13 +31218,10 @@ MonoBehaviour:
   row: 1
   column: 4
   position: 9
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1256448536}
   choicescript: {fileID: 1256448534}
-  image: {fileID: 1256448532}
 --- !u!114 &1256448536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31342,13 +31339,10 @@ MonoBehaviour:
   row: 1
   column: 0
   position: 5
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1275516046}
   choicescript: {fileID: 1275516041}
-  image: {fileID: 1275516044}
 --- !u!114 &1275516043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31413,7 +31407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32168,6 +32162,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1289877589
@@ -32443,6 +32438,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1295404096
@@ -33114,13 +33110,10 @@ MonoBehaviour:
   row: 2
   column: 3
   position: 13
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1312337850}
   choicescript: {fileID: 1312337845}
-  image: {fileID: 1312337848}
 --- !u!114 &1312337847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33185,7 +33178,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -34399,6 +34392,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1392820087
@@ -34557,6 +34551,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1394335784
@@ -34835,6 +34830,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1398105714
@@ -35038,6 +35034,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1414819306
@@ -35241,6 +35238,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1416108245
@@ -35444,6 +35442,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1426334476
@@ -35647,6 +35646,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1428278382
@@ -35895,6 +35895,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1428680569
@@ -36734,6 +36735,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1446889321
@@ -36913,13 +36915,10 @@ MonoBehaviour:
   row: 2
   column: 0
   position: 10
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1454011854}
   choicescript: {fileID: 1454011849}
-  image: {fileID: 1454011852}
 --- !u!114 &1454011851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36984,7 +36983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -37143,6 +37142,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1463900490
@@ -37840,6 +37840,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1510304044
@@ -38319,6 +38320,7 @@ MonoBehaviour:
   rank: 6
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1517907638
@@ -38993,6 +38995,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1558791083
@@ -39226,6 +39229,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1568897829
@@ -39831,6 +39835,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1588588900
@@ -40703,6 +40708,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1632013761
@@ -41057,6 +41063,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1648623219
@@ -42182,6 +42189,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1673422168
@@ -42682,13 +42690,10 @@ MonoBehaviour:
   row: 0
   column: 1
   position: 1
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1681935923}
   choicescript: {fileID: 1681935918}
-  image: {fileID: 1681935921}
 --- !u!114 &1681935920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42753,7 +42758,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -43570,6 +43575,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1732198081
@@ -43893,6 +43899,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1749518843
@@ -44491,6 +44498,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1774733227
@@ -44769,6 +44777,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1789075872
@@ -45047,6 +45056,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1795332409
@@ -45347,13 +45357,10 @@ MonoBehaviour:
   row: 4
   column: 4
   position: 24
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1831039196}
   choicescript: {fileID: 1831039191}
-  image: {fileID: 1831039194}
 --- !u!114 &1831039193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45418,7 +45425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -45532,6 +45539,7 @@ MonoBehaviour:
   rank: 1
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1834925046
@@ -45735,6 +45743,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1841525345
@@ -46034,13 +46043,10 @@ MonoBehaviour:
   row: 0
   column: 2
   position: 2
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1864149359}
   choicescript: {fileID: 1864149354}
-  image: {fileID: 1864149357}
 --- !u!114 &1864149356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46105,7 +46111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -46264,6 +46270,7 @@ MonoBehaviour:
   rank: 0
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1867279723
@@ -46562,13 +46569,10 @@ MonoBehaviour:
   row: 1
   column: 2
   position: 7
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1910837973}
   choicescript: {fileID: 1910837968}
-  image: {fileID: 1910837971}
 --- !u!114 &1910837970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46633,7 +46637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -46919,13 +46923,10 @@ MonoBehaviour:
   row: 4
   column: 0
   position: 20
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1924447509}
   choicescript: {fileID: 1924447504}
-  image: {fileID: 1924447507}
 --- !u!114 &1924447506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46990,7 +46991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -47219,6 +47220,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1929280527
@@ -47592,13 +47594,10 @@ MonoBehaviour:
   row: 1
   column: 4
   position: 8
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 1939228121}
   choicescript: {fileID: 1939228116}
-  image: {fileID: 1939228119}
 --- !u!114 &1939228118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47663,7 +47662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -48278,6 +48277,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1983635251
@@ -48760,6 +48760,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1995686526
@@ -49172,6 +49173,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &1999851391
@@ -49330,6 +49332,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &2023264549
@@ -49728,6 +49731,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &2030953941
@@ -49961,6 +49965,7 @@ MonoBehaviour:
   rank: 3
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &2033570279
@@ -50464,6 +50469,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &2060306947
@@ -50667,6 +50673,7 @@ MonoBehaviour:
   rank: 2
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &2064220882
@@ -51620,6 +51627,7 @@ MonoBehaviour:
   rank: 4
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &2117258324
@@ -52182,6 +52190,7 @@ MonoBehaviour:
   rank: 5
   pv: {fileID: 0}
   image: {fileID: 0}
+  originalSprite: {fileID: 0}
   choicescript: {fileID: 0}
   suitCode: 0
 --- !u!114 &2126092006
@@ -52405,13 +52414,10 @@ MonoBehaviour:
   row: 3
   column: 2
   position: 17
-  faceup: 0
   facedownsprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
   mycard: {fileID: 0}
   adjacentTiles: []
-  pv: {fileID: 2126413820}
   choicescript: {fileID: 2126413815}
-  image: {fileID: 2126413818}
 --- !u!114 &2126413817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52476,7 +52482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6f086532c1e49a1ae3db8581bc6ad0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -27,7 +27,7 @@ public class TextManager : MonoBehaviour
             for (int i = 0; i < Manager.instance.playerordergameobject.Count; i++)
             {
                 Player nextPlayer = Manager.instance.playerordergameobject[i];
-                nextPlayer.pv.RPC("Text", nextPlayer.photonplayer, player.photonplayer);
+                nextPlayer.pv.RPC("Text", nextPlayer.pv.Controller, player.pv.Controller);
             }
 
             while (waiting > 0)

@@ -16,6 +16,7 @@ public class Card : MonoBehaviour
 
     [ReadOnly] public PhotonView pv;
     [ReadOnly] public Image image;
+    [ReadOnly] public Sprite originalSprite;
     [ReadOnly] public SendChoice choicescript;
     [ReadOnly] public int suitCode;
 
@@ -24,6 +25,7 @@ public class Card : MonoBehaviour
         pv = this.GetComponent<PhotonView>();
         image = GetComponent<Image>();
         choicescript = GetComponent<SendChoice>();
+        originalSprite = image.sprite;
     }
 
     void Start()
@@ -78,5 +80,56 @@ public class Card : MonoBehaviour
         this.gameObject.transform.SetParent(Manager.instance.trash);
         if (playerOrder > -1)
             Manager.instance.playerordergameobject[playerOrder].listOfHand.Remove(this);
+    }
+
+    public IEnumerator MoveCard(Vector2 newPos, Vector3 newRot, float waitTime)
+    {
+        float elapsedTime = 0;
+        Vector2 originalPos = this.transform.localPosition;
+        Vector3 originalRot = this.transform.localEulerAngles;
+
+        while (elapsedTime < waitTime)
+        {
+            this.transform.localPosition = Vector2.Lerp(originalPos, newPos, elapsedTime / waitTime);
+            this.transform.localEulerAngles = Vector3.Lerp(originalRot, newRot, elapsedTime / waitTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        this.transform.localPosition = newPos;
+        this.transform.localEulerAngles = newRot;
+    }
+
+    public IEnumerator FlipCard(float totalTime, Sprite newSprite)
+    {
+        transform.localEulerAngles = new Vector3(0, 0, 0);
+        float elapsedTime = 0f;
+
+        Vector3 originalRot = this.transform.localEulerAngles;
+        Vector3 newRot = new(0, 90, 0);
+
+        while (elapsedTime < totalTime)
+        {
+            this.transform.localEulerAngles = Vector3.Lerp(originalRot, newRot, elapsedTime / totalTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        image.sprite = newSprite;
+        elapsedTime = 0f;
+
+        while (elapsedTime < totalTime)
+        {
+            this.transform.localEulerAngles = Vector3.Lerp(newRot, originalRot, elapsedTime / totalTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        this.transform.localEulerAngles = originalRot;
+    }
+
+    public bool IsPublic()
+    {
+        return (this.image.sprite == originalSprite);
     }
 }

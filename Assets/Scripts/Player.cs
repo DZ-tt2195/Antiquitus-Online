@@ -2,33 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using TMPro;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using ExitGames.Client.Photon;
-using Photon.Realtime;
 using System.Linq;
 using MyBox;
 
 public class Player : MonoBehaviourPunCallbacks
 {
-    public PhotonView pv;
-    public Transform cardhand;
-    public Transform placardhand;
-    public List<Card> listOfHand = new List<Card>();
-    public List<Placard> listOfPlacard = new List<Placard>();
 
-    public int playerposition;
-    public Photon.Realtime.Player photonplayer;
+#region Variables
+
+    [ReadOnly] public PhotonView pv;
+    [ReadOnly] public int playerposition;
+
+    [Foldout("Cards", true)]
+    [SerializeField] Transform cardhand;
+    [SerializeField] Transform placardhand;
+    [ReadOnly] public List<Card> listOfHand = new List<Card>();
+    [ReadOnly] public List<Placard> listOfPlacard = new List<Placard>();
+
+    [Foldout("UI", true)]
+    Canvas canvas;
     Button resign;
-
-    [HideInInspector] public PlayerButton myButton;
-    [HideInInspector] Transform arrow;
+    [ReadOnly] public PlayerButton myButton;
+    [ReadOnly] Transform arrow;
     Transform storePlayers;
     int movePosition;
 
-    [HideInInspector] public bool waiting;
-    [HideInInspector] public bool turnon;
+    [Foldout("Decisions", true)]
 
     [ReadOnly] public string choice;
     [ReadOnly] public Placard chosenPlacard;
@@ -37,69 +37,104 @@ public class Player : MonoBehaviourPunCallbacks
     [ReadOnly] public WeaponBox chosenbox;
     [ReadOnly] public BoneArrow chosenarrow;
 
-    public Card cardthisturn;
-    public TileData tilethisturn;
-    public int cardsdiscarded;
-    public int cardsrevealed;
-    public bool eventactivated;
+    [Foldout("Turns", true)]
+    [ReadOnly] public bool waiting;
+    [ReadOnly] public bool turnon;
+    [ReadOnly] public Card cardthisturn;
+    [ReadOnly] public TileData tilethisturn;
+    [ReadOnly] public int cardsdiscarded;
+    [ReadOnly] public int cardsrevealed;
+    [ReadOnly] public bool eventactivated;
 
-    [HideInInspector] public int turns;
-    public int reputation;
+    [Foldout("Score", true)]
+    [ReadOnly] public int turns;
+    [ReadOnly] public int reputation;
     [ReadOnly] public int personalsubmissions;
+
+    #endregion
+
+#region Setup
 
     private void Awake()
     {
         resign = GameObject.Find("Resign Button").GetComponent<Button>();
         storePlayers = GameObject.Find("Store Players").transform;
         arrow = GameObject.Find("Arrow").transform;
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
 
     private void Start()
     {
-        if (this.pv.AmController)
+        if (PhotonNetwork.IsConnected)
+            this.name = pv.Owner.NickName;
+        if (!PhotonNetwork.IsConnected && this.pv.AmController)
             resign.onClick.AddListener(ResignTime);
-        this.name = pv.Owner.NickName;
+
         this.transform.SetParent(storePlayers);
     }
 
-    public void ResignTime()
-    {
-        Manager.instance.GameOver($"{this.name} has resigned.", this.playerposition);
-    }
-
     [PunRPC]
-    public void AssignInfo(int position, Photon.Realtime.Player playername)
+    public void AssignInfo(int position)
     {
         this.transform.localPosition = new Vector3(-280 + 2000 * playerposition, 0, 0);
         this.playerposition = position;
-        this.photonplayer = playername;
         this.myButton = GameObject.Find($"{this.name}'s Button").GetComponent<PlayerButton>();
-        photonView.RPC("UpdateButtonText", RpcTarget.All);
-        photonView.RPC("ButtonClick", RpcTarget.All);
+        UpdateButtonText();
 
-        if (pv.AmOwner)
+        if (PhotonNetwork.IsConnected)
+        {
+            pv.RPC("ButtonClick", RpcTarget.All);
+
+            if (pv.AmOwner)
+                ClickMe();
+        }
+        else
+        {
+            ButtonClick();
             ClickMe();
+        }
+    }
+
+    #endregion
+
+#region Buttons
+
+    public void UpdateButtonTextRPC()
+    {
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("UpdateButtonText", RpcTarget.All);
+        else
+            UpdateButtonText();
     }
 
     [PunRPC]
-    public void UpdateButtonText()
+    void UpdateButtonText()
     {
         myButton.textbox.text = $"{this.name}: {reputation} REP";
     }
 
     [PunRPC]
-    public void ButtonClick()
+    void ButtonClick()
     {
         movePosition = -2000 * playerposition;
         myButton.button.onClick.AddListener(ClickMe);
     }
 
-    public void ClickMe()
+    void ClickMe()
     {
         storePlayers.transform.localPosition = new Vector3(movePosition, 0, 0);
         arrow.transform.SetParent(myButton.transform);
-        arrow.transform.localPosition = new Vector3(95.5f, 0, 0);
+        arrow.transform.localPosition = new Vector3(160, 0, 0);
     }
+
+    void ResignTime()
+    {
+        Manager.instance.GameOver($"{this.name} has resigned.", this.playerposition);
+    }
+
+    #endregion
+
+#region Turns
 
     public Player GetPreviousPlayer()
     {
@@ -126,13 +161,16 @@ public class Player : MonoBehaviourPunCallbacks
         waiting = false;
     }
 
-    public IEnumerator TakeTurnRPC(Photon.Realtime.Player requestingplayer)
+    public IEnumerator TakeTurnRPC()
     {
-        photonView.RPC("TakeTurn", requestingplayer);
+        if (PhotonNetwork.IsConnected)
+            photonView.RPC("TakeTurn", pv.Controller);
+        else
+            StartCoroutine(TakeTurn());
+
         turnon = true;
         while (turnon)
             yield return null;
-        Debug.Log("turn finished");
     }
 
     [PunRPC]
@@ -142,51 +180,48 @@ public class Player : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public IEnumerator TakeTurn()
+    IEnumerator TakeTurn()
     {
-        yield return null;
-        if (pv.IsMine)
-        {
-            turns++;
-            ClickMe();
+        turns++;
+        ClickMe();
+
+        if (PhotonNetwork.IsConnected)
             photonView.RPC("WaitForPlayer", RpcTarget.Others, this.name);
 
-            Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
-            Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name}'s Turn");
+        Log.instance.AddTextRPC($"");
+        Log.instance.AddTextRPC($"{this.name}'s Turn");
 
-            yield return ChooseTileInSite();
-            yield return new WaitForSeconds(0.5f);
+        yield return ChooseTileInSite();
+        yield return new WaitForSeconds(0.5f);
 
-            for (int i = 0; i < tilethisturn.adjacentTiles.Count; i++)
-                yield return ResolveAdjacentTile(tilethisturn.adjacentTiles[i]);
+        for (int i = 0; i < tilethisturn.adjacentTiles.Count; i++)
+            yield return ResolveAdjacentTile(tilethisturn.adjacentTiles[i]);
 
-            yield return cardthisturn.OnTakeEffect(this);
+        yield return cardthisturn.OnTakeEffect(this);
+        yield return new WaitForSeconds(0.5f);
+        yield return AskForSubmission();
 
-            yield return new WaitForSeconds(0.5f);
-
-            yield return AskForSubmission();
-
-            cardthisturn = null;
-            tilethisturn = null;
-            cardsdiscarded = 0;
-            cardsrevealed = 0;
-            eventactivated = false;
-            choice = "";
-            chosencard = null;
-            chosentile = null;
-            chosenbox = null;
-            chosenarrow = null;
-            chosenPlacard = null;
-            photonView.RPC("TurnOver", RpcTarget.All);
-        }
+        cardthisturn = null;
+        tilethisturn = null;
+        cardsdiscarded = 0;
+        cardsrevealed = 0;
+        eventactivated = false;
+        choice = "";
+        chosencard = null;
+        chosentile = null;
+        chosenbox = null;
+        chosenarrow = null;
+        chosenPlacard = null;
+        if (PhotonNetwork.IsConnected) photonView.RPC("TurnOver", RpcTarget.All); else TurnOver();
     }
+
 
     IEnumerator ChooseTileInSite()
     {
         for (int i = 0; i < Manager.instance.listoftiles.Count; i++)
         {
             TileData nexttile = Manager.instance.listoftiles[i];
-            if (nexttile.faceup && !nexttile.mycard.eventtile)
+            if (nexttile.mycard.IsPublic() && !nexttile.mycard.eventtile)
                 nexttile.choicescript.EnableButton(this, true);
         }
 
@@ -208,30 +243,30 @@ public class Player : MonoBehaviourPunCallbacks
 
         int[] cardIDs = new int[1];
         cardIDs[0] = cardthisturn.pv.ViewID;
-        photonView.RPC("SendDraw", RpcTarget.All, cardIDs);
-        chosentile.pv.RPC("ReplaceCard", RpcTarget.MasterClient);
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+        if (PhotonNetwork.IsConnected) pv.RPC("SendDraw", RpcTarget.All, cardIDs); else SendDraw(cardIDs);
+        chosentile.CardFromDeckRPC();
+        Log.instance.AddTextRPC($"");
     }
 
     IEnumerator ResolveAdjacentTile(TileData nextTile)
     {
         if (nextTile != null)
         {
-            if (nextTile.faceup)
+            if (nextTile.mycard.IsPublic())
             {
                 cardsdiscarded++;
                 Card discardedCard = nextTile.mycard;
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name} discards {nextTile.mycard.logName}.");
+                Log.instance.AddTextRPC($"{this.name} discards {nextTile.mycard.logName}.");
 
-                nextTile.pv.RPC("ReplaceCard", RpcTarget.MasterClient);
-                photonView.RPC("DiscardCard", RpcTarget.All, discardedCard.pv.ViewID);
+                nextTile.CardFromDeckRPC();
+                DiscardCardRPC(discardedCard);
                 yield return discardedCard.OnDiscardEffect(this);
             }
             else
             {
                 cardsrevealed++;
-                nextTile.pv.RPC("FlipTile", RpcTarget.All, true);
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name} reveals {nextTile.mycard.logName}.");
+                nextTile.FlipCardRPC(true);
+                Log.instance.AddTextRPC($"{this.name} reveals {nextTile.mycard.logName}.");
             }
         }
     }
@@ -320,7 +355,7 @@ public class Player : MonoBehaviourPunCallbacks
 
                 if (successfulPlacards.Count >= 1)
                 {
-                    Log.instance.AddText($"");
+                    Log.instance.AddTextRPC($"");
                     int totalPoints = (successfulPlacards.Count - 1);
                     int[] cardIDs = new int[submittedCards.Count];
                     int[] placardIDs = new int[successfulPlacards.Count];
@@ -328,18 +363,21 @@ public class Player : MonoBehaviourPunCallbacks
                     for (int i = 0; i < submittedCards.Count; i++)
                     {
                         cardIDs[i] = submittedCards[i].pv.ViewID;
-                        Log.instance.AddText($"{this.name} submits {submittedCards[i].logName}.");
+                        Log.instance.AddTextRPC($"{this.name} submits {submittedCards[i].logName}.");
                         submittedCards[i].pv.RPC("TrashThis", RpcTarget.All, this.playerposition);
                     }
                     for (int i = 0; i < successfulPlacards.Count; i++)
                     {
                         totalPoints += successfulPlacards[i].rep;
                         placardIDs[i] = successfulPlacards[i].pv.ViewID;
-                        Log.instance.AddText($"{this.name} submits {successfulPlacards[i].logName}.");
+                        Log.instance.AddTextRPC($"{this.name} submits {successfulPlacards[i].logName}.");
                         successfulPlacards[i].pv.RPC("TrashThis", RpcTarget.All, this.playerposition);
                     }
-                    this.pv.RPC("MadeSubmission", RpcTarget.All, totalPoints);
+
+                    if (PhotonNetwork.IsConnected) this.pv.RPC("MadeSubmission", RpcTarget.All, totalPoints); else MadeSubmission(totalPoints);
                     myButton.pv.RPC("MadeSubmission", RpcTarget.All, $"{this.name}: +{totalPoints}", placardIDs, cardIDs);
+                    Log.instance.AddTextRPC($"{this.name} scores {totalPoints} REP.");
+
                     yield return ChoosePlacard();
                 }
             }
@@ -347,25 +385,73 @@ public class Player : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void MadeSubmission(int total)
+    void MadeSubmission(int total)
     {
         Manager.instance.remainingsubmissions--;
         this.reputation += total;
-        Log.instance.AddText($"{this.name} scores {total} REP.");
         this.personalsubmissions++;
         this.UpdateButtonText();
     }
 
-    [PunRPC]
-    public void DiscardCard(int cardID)
+#endregion
+
+#region Cards
+
+    public void SortHand()
     {
-        PhotonView.Find(cardID).transform.SetParent(Manager.instance.discard);
+        float firstCalc = Mathf.Round(canvas.transform.localScale.x * 4) / 4f;
+        float multiplier = firstCalc / 0.25f;
+
+        for (int i = 0; i < listOfHand.Count; i++)
+        {
+            Card nextCard = listOfHand[i];
+            float startingX = (listOfHand.Count > 7) ? (-300 - (150 * multiplier)) : (listOfHand.Count - 1) * (-50 - 25 * multiplier);
+            float difference = (listOfHand.Count > 7) ? (-300 - (150 * multiplier)) * -2 / (listOfHand.Count - 1) : 100 + (50 * multiplier);
+            Vector2 newPosition = new(startingX + difference * i, -600 * canvas.transform.localScale.x);
+            StartCoroutine(nextCard.MoveCard(newPosition, nextCard.transform.localEulerAngles, 0.3f));
+        }
+
+        UpdateButtonTextRPC();
+    }
+
+    public void DiscardCardRPC(Card card)
+    {
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("DiscardCard", RpcTarget.All, card.pv.ViewID);
+        else
+            DiscardCard(card);
+    }
+
+    void DiscardCard(Card discardMe)
+    {
+        listOfHand.Remove(discardMe);
+        SortHand();
+
+        discardMe.transform.SetParent(Manager.instance.discard);
+        StartCoroutine(discardMe.MoveCard(new Vector2(-2000, -330), new Vector3(0, 0, 0), 0.3f));
     }
 
     [PunRPC]
-    public void RequestDraw(int cardsToDraw)
+    void DiscardCard(int cardID)
     {
+        Card discardMe = PhotonView.Find(cardID).GetComponent<Card>();
+        DiscardCard(discardMe);
+    }
+
+    public void DrawCardRPC(int cardsToDraw)
+    {
+        if (PhotonNetwork.IsConnected)
+            this.pv.RPC("RequestDraw", RpcTarget.MasterClient, cardsToDraw);
+        else
+            RequestDraw(cardsToDraw);
+    }
+
+    [PunRPC]
+    void RequestDraw(int cardsToDraw)
+    {
+        Card[] listOfDraw = new Card[cardsToDraw];
         int[] cardIDs = new int[cardsToDraw];
+
         int drawnCards = 0;
         int lookingAtCards = 0;
 
@@ -378,48 +464,93 @@ public class Player : MonoBehaviourPunCallbacks
                     Manager.instance.discard.GetChild(0).SetParent(Manager.instance.deck);
             }
 
-            Card x = Manager.instance.deck.GetChild(0).GetComponent<Card>();
+            Card nextCard = Manager.instance.deck.GetChild(0).GetComponent<Card>();
+            nextCard.transform.SetParent(null);
             lookingAtCards++;
-            if (x.eventtile)
+
+            if (nextCard.eventtile)
             {
-                photonView.RPC("DiscardCard", RpcTarget.All, x.pv.ViewID);
+                DiscardCardRPC(nextCard);
             }
             else
             {
-                cardIDs[drawnCards] = x.pv.ViewID;
-                x.transform.SetParent(null);
+                listOfDraw[drawnCards] = nextCard;
+                cardIDs[drawnCards] = nextCard.pv.ViewID;
                 drawnCards++;
             }
         }
 
-        photonView.RPC("SendDraw", RpcTarget.All, cardIDs);
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("SendDraw", RpcTarget.All, cardIDs);
+        else
+            AddToHand(listOfDraw);
     }
 
-    [PunRPC]
-    IEnumerator SendDraw(int[] cardIDs)
+    void AddToHand(Card[] listOfDraw)
     {
-        for (int i = 0; i < cardIDs.Length; i++)
+        foreach (Card card in listOfDraw)
         {
-            yield return new WaitForSeconds(0.02f);
-            Card nextcard = PhotonView.Find(cardIDs[i]).gameObject.GetComponent<Card>();
-            Log.instance.AddText($"{this.name} puts {nextcard.logName} in their hand.");
+            listOfHand.Add(card);
+            card.transform.SetParent(cardhand);
+            card.transform.localPosition = new Vector2(0, -1000);
 
-            if (this.cardhand.childCount == 0)
-            {
-                nextcard.transform.SetParent(this.cardhand);
-                listOfHand.Add(nextcard);
-            }
-
-            else if (Manager.instance.sorting == Manager.Sorting.suit)
-                AddCardBySuit(nextcard, 0, cardhand.childCount - 1);
+            if (PhotonNetwork.IsConnected)
+                Log.instance.AddTextRPC($"{this.name} puts {card.logName} in their hand.");
             else
-                AddCardByRank(nextcard, 0, cardhand.childCount - 1);
-            nextcard.transform.localScale = new Vector3(1, 1, 1);
+                Log.instance.AddTextRPC($"{this.name} put {card.logName} in your hand.");
         }
+
+        if (Manager.instance.sorting == Manager.Sorting.suit)
+            SortHandBySuit();
+        else
+            SortHandByRank();
     }
 
     [PunRPC]
-    public IEnumerator ChoosePlacard()
+    void SendDraw(int[] cardIDs)
+    {
+        Card[] listOfCards = new Card[cardIDs.Length];
+        for (int i = 0; i < cardIDs.Length; i++)
+            listOfCards[i] = PhotonView.Find(cardIDs[i]).gameObject.GetComponent<Card>();
+
+        AddToHand(listOfCards);
+    }
+
+    public void SortHandBySuit()
+    {
+        listOfHand = listOfHand.OrderBy(o => o.suitCode).ToList();
+        SortHand();
+    }
+
+    public void SortHandByRank()
+    {
+        listOfHand = listOfHand.OrderBy(o => o.rank).ToList();
+        SortHand();
+    }
+
+    #endregion
+
+#region Placards
+
+    public void SortPlacards()
+    {
+        float firstCalc = Mathf.Round(canvas.transform.localScale.x * 4) / 4f;
+        float multiplier = firstCalc / 0.25f;
+
+        for (int i = 0; i < listOfPlacard.Count; i++)
+        {
+            Placard nextCard = listOfPlacard[i];
+            float startingY = 115 * multiplier;
+            float difference = 50 * multiplier;
+            Vector2 newPosition = new(850 * canvas.transform.localScale.x, startingY-difference*i);
+            StartCoroutine(nextCard.MoveCard(newPosition, nextCard.transform.localEulerAngles, 0.3f));
+        }
+
+        UpdateButtonTextRPC();
+    }
+
+    [PunRPC]
+    IEnumerator ChoosePlacard()
     {
         if (placardhand.childCount < 5)
         {
@@ -442,8 +573,20 @@ public class Player : MonoBehaviourPunCallbacks
         }
     }
 
+    public void RequestPlacardRPC(int value)
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            pv.RPC("RequestPlacard", RpcTarget.MasterClient, value);
+        }
+        else
+        {
+            RequestPlacard(value);
+        }
+    }
+
     [PunRPC]
-    public void RequestPlacard(int value)
+    void RequestPlacard(int value)
     {
         Transform deckToFind = null;
         if (value == 1)
@@ -454,7 +597,47 @@ public class Player : MonoBehaviourPunCallbacks
             deckToFind = Manager.instance.rep4deck.transform;
 
         Placard x = deckToFind.GetChild(0).GetComponent<Placard>();
-        photonView.RPC("SendPlacard", RpcTarget.All, x.pv.ViewID);
+        if (PhotonNetwork.IsConnected)
+            photonView.RPC("SendPlacard", RpcTarget.All, x.pv.ViewID);
+        else
+            AddPlacard(x);
+    }
+
+    void AddPlacard(Placard placard)
+    {
+        placard.transform.SetParent(this.placardhand);
+        listOfPlacard.Add(placard);
+        placard.transform.localPosition = new Vector2(1000, 1000);
+
+        if (!PhotonNetwork.IsConnected || pv.IsMine)
+        {
+            placard.image.sprite = placard.originalImage;
+            Log.instance.AddTextSecret($"{this.name} gets {placard.logName}.");
+        }
+        else
+        {
+            Log.instance.AddTextRPC($"{this.name} gets a {placard.rep} REP placard.");
+            switch (placard.rep)
+            {
+                case 1:
+                    placard.image.sprite = Manager.instance.back1;
+                    break;
+                case 2:
+                    placard.image.sprite = Manager.instance.back2;
+                    break;
+                case 4:
+                    placard.image.sprite = Manager.instance.back4;
+                    break;
+            }
+        }
+
+        SortPlacards();
+    }
+
+    [PunRPC]
+    void ReceivePlacard(int ID)
+    {
+        AddPlacard(PhotonView.Find(ID).gameObject.GetComponent<Placard>());
     }
 
     [PunRPC]
@@ -465,156 +648,7 @@ public class Player : MonoBehaviourPunCallbacks
         listOfPlacard.Remove(nextPlacard);
     }
 
-    [PunRPC]
-    public void SendPlacard(int viewID)
-    {
-        Placard nextPlacard = PhotonView.Find(viewID).gameObject.GetComponent<Placard>();
-        nextPlacard.transform.SetParent(this.placardhand);
-        nextPlacard.transform.localScale = new Vector3(1, 1, 1);
-        listOfPlacard.Add(nextPlacard);
-
-        if (pv.IsMine)
-        {
-            nextPlacard.image.sprite = nextPlacard.originalImage;
-            Log.instance.AddText($"{this.name} gets {nextPlacard.logName}.");
-        }
-        else
-        {
-            Log.instance.AddText($"{this.name} gets a {nextPlacard.rep} REP placard.");
-            switch (nextPlacard.rep)
-            {
-                case 1:
-                    nextPlacard.image.sprite = Manager.instance.back1;
-                    break;
-                case 2:
-                    nextPlacard.image.sprite = Manager.instance.back2;
-                    break;
-                case 4:
-                    nextPlacard.image.sprite = Manager.instance.back4;
-                    break;
-            }
-        }
-    }
-
-    [PunRPC]
-    public IEnumerator TrashPlacard(Photon.Realtime.Player requestingplayer)
-    {
-        if (placardhand.childCount >= 2)
-        {
-            for (int i = 0; i < listOfPlacard.Count; i++)
-                listOfPlacard[i].choicescript.EnableButton(this, true);
-
-            choice = "";
-            chosenPlacard = null;
-            Manager.instance.instructions.text = $"Trash one of your Placards.";
-            while (choice == "")
-                yield return null;
-
-            Log.instance.pv.RPC("AddText", RpcTarget.All, $"{this.name} trashes {chosenPlacard.logName}.");
-            chosenPlacard.pv.RPC("TrashThis", RpcTarget.All, this.playerposition);
-            yield return new WaitForSeconds(0.3f);
-            for (int i = 0; i < listOfPlacard.Count; i++)
-                listOfPlacard[i].choicescript.DisableButton();
-        }
-
-        GameObject.Find(requestingplayer.NickName).GetComponent<PhotonView>().RPC("WaitDone", requestingplayer);
-    }
-
-    void AddCardBySuit(Card nextCard, int low, int high)
-    {
-        if (high <= low)
-        {
-            Card lowCard = cardhand.GetChild(low).GetComponent<Card>();
-
-            if (nextCard.suitCode > lowCard.suitCode)
-            {
-                listOfHand.Insert(low + 1, nextCard);
-                nextCard.transform.SetParent(cardhand.transform);
-                nextCard.transform.SetSiblingIndex(low + 1);
-                return;
-            }
-            else
-            {
-                listOfHand.Insert(low, nextCard);
-                nextCard.transform.SetParent(cardhand.transform);
-                nextCard.transform.SetSiblingIndex(low);
-                return;
-            }
-        }
-
-        int mid = (low + high) / 2;
-        Card midCard = cardhand.GetChild(mid).GetComponent<Card>();
-
-        if (nextCard.suitCode == midCard.suitCode)
-        {
-            listOfHand.Insert(mid + 1, nextCard);
-            nextCard.transform.SetParent(cardhand.transform);
-            nextCard.transform.SetSiblingIndex(mid + 1);
-            return;
-        }
-
-        if (nextCard.suitCode > midCard.suitCode)
-            AddCardBySuit(nextCard, mid + 1, high);
-        else
-            AddCardBySuit(nextCard, low, mid - 1);
-    }
-
-    void AddCardByRank(Card nextCard, int low, int high)
-    {
-        if (high <= low)
-        {
-            Card lowCard = cardhand.GetChild(low).GetComponent<Card>();
-
-            if (nextCard.rank > lowCard.rank)
-            {
-                listOfHand.Insert(low + 1, nextCard);
-                nextCard.transform.SetParent(cardhand.transform);
-                nextCard.transform.SetSiblingIndex(low + 1);
-                return;
-            }
-            else
-            {
-                listOfHand.Insert(low, nextCard);
-                nextCard.transform.SetParent(cardhand.transform);
-                nextCard.transform.SetSiblingIndex(low);
-                return;
-            }
-        }
-
-        int mid = (low + high) / 2;
-        Card midCard = cardhand.GetChild(mid).GetComponent<Card>();
-
-        if (nextCard.rank == midCard.rank)
-        {
-            listOfHand.Insert(mid + 1, nextCard);
-            nextCard.transform.SetParent(cardhand.transform);
-            nextCard.transform.SetSiblingIndex(mid + 1);
-            return;
-        }
-
-        if (nextCard.rank > midCard.rank)
-            AddCardBySuit(nextCard, mid + 1, high);
-        else
-            AddCardBySuit(nextCard, low, mid - 1);
-    }
-
-    public void SortHandBySuit()
-    {
-        listOfHand = listOfHand.OrderBy(o => o.suitCode).ToList();
-        for (int i = 0; i < listOfHand.Count; i++)
-        {
-            PhotonView.Find(listOfHand[i].pv.ViewID).transform.SetSiblingIndex(i);
-        }
-    }
-
-    public void SortHandByRank()
-    {
-        listOfHand = listOfHand.OrderBy(o => o.rank).ToList();
-        for (int i = 0; i < listOfHand.Count; i++)
-        {
-            PhotonView.Find(listOfHand[i].pv.ViewID).transform.SetSiblingIndex(i);
-        }
-    }
+#endregion
 
     [PunRPC]
     public IEnumerator Text(Photon.Realtime.Player requestingplayer)
@@ -649,4 +683,29 @@ public class Player : MonoBehaviourPunCallbacks
         yield return ChoosePlacard();
         GameObject.Find(requestingplayer.NickName).GetComponent<PhotonView>().RPC("WaitDone", requestingplayer);
     }
+
+    [PunRPC]
+    public IEnumerator TrashPlacard(Photon.Realtime.Player requestingplayer)
+    {
+        if (placardhand.childCount >= 2)
+        {
+            for (int i = 0; i < listOfPlacard.Count; i++)
+                listOfPlacard[i].choicescript.EnableButton(this, true);
+
+            choice = "";
+            chosenPlacard = null;
+            Manager.instance.instructions.text = $"Trash one of your Placards.";
+            while (choice == "")
+                yield return null;
+
+            Log.instance.AddTextRPC($"{this.name} trashes {chosenPlacard.logName}.");
+            chosenPlacard.pv.RPC("TrashThis", RpcTarget.All, this.playerposition);
+            yield return new WaitForSeconds(0.3f);
+            for (int i = 0; i < listOfPlacard.Count; i++)
+                listOfPlacard[i].choicescript.DisableButton();
+        }
+
+        GameObject.Find(requestingplayer.NickName).GetComponent<PhotonView>().RPC("WaitDone", requestingplayer);
+    }
+
 }

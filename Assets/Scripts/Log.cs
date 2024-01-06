@@ -33,8 +33,27 @@ public class Log : MonoBehaviour
         #endif
     }
 
+    public void AddTextSecret(string text)
+    {
+        if (this.pv.IsMine)
+        {
+            if (PhotonNetwork.IsConnected)
+                pv.RPC("AddText", RpcTarget.All, text);
+            else
+                AddText(text);
+        }
+    }
+
+    public void AddTextRPC(string text)
+    {
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("AddText", RpcTarget.All, text);
+        else
+            AddText(text);
+    }
+
     [PunRPC]
-    public void AddText(string text)
+    void AddText(string text)
     {
         linesOfText++;
         textBox.text += text + "\n";

@@ -37,7 +37,7 @@ public class Weapon : Card
             if (nextCard != null)
             {
                 storecards.Add(nextCard);
-                player.chosenbox.groupofTiles[i].pv.RPC("NullCard", RpcTarget.All);
+                player.chosenbox.groupofTiles[i].NullCardRPC();
             }
         }
 
@@ -76,12 +76,12 @@ public class Weapon : Card
 
             if (player.choice == "Face Up")
             {
-                Manager.instance.listoftiles[storebox.groupofTiles[i].position].pv.RPC("NewCard", RpcTarget.All, nextCard.pv.ViewID, true);
+                Manager.instance.listoftiles[storebox.groupofTiles[i].position].NewCardRPC(nextCard, true);
                 Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts {nextCard.logName} into the Site.");
             }
             else
             {
-                Manager.instance.listoftiles[storebox.groupofTiles[i].position].pv.RPC("NewCard", RpcTarget.All, nextCard.pv.ViewID, false);
+                Manager.instance.listoftiles[storebox.groupofTiles[i].position].NewCardRPC(nextCard, false);
                 Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts a card into the Site.");
             }
         }

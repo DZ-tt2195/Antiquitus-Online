@@ -45,4 +45,22 @@ public class Placard : MonoBehaviour
         if (playerOrder > -1)
             Manager.instance.playerordergameobject[playerOrder].listOfPlacard.Remove(this);
     }
+
+    public IEnumerator MoveCard(Vector2 newPos, Vector3 newRot, float waitTime)
+    {
+        float elapsedTime = 0;
+        Vector2 originalPos = this.transform.localPosition;
+        Vector3 originalRot = this.transform.localEulerAngles;
+
+        while (elapsedTime < waitTime)
+        {
+            this.transform.localPosition = Vector2.Lerp(originalPos, newPos, elapsedTime / waitTime);
+            this.transform.localEulerAngles = Vector3.Lerp(originalRot, newRot, elapsedTime / waitTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        this.transform.localPosition = newPos;
+        this.transform.localEulerAngles = newRot;
+    }
 }

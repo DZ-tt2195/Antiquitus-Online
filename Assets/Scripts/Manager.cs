@@ -19,7 +19,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
     public static Manager instance;
 
     [ReadOnly] public const byte AddNextPlayerEvent = 1;
-    [ReadOnly] public const byte AssignCardToSiteEvent = 2;
     [ReadOnly] public const byte SubmissionEvent = 3;
     [ReadOnly] public const byte GameOverEvent = 4;
 
@@ -28,6 +27,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
         public Sprite back1;
         public Sprite back2;
         public Sprite back4;
+        [SerializeField] Player playerClone;
         [SerializeField] SendChoice cardButton;
         [SerializeField] SendChoice textButton;
         [SerializeField] SendChoice placardButton;
@@ -38,7 +38,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
         public List<BoneArrow> listofarrows = new List<BoneArrow>();
         public List<WeaponBox> listofboxes = new List<WeaponBox>();
         [ReadOnly] public List<Player> playerordergameobject = new List<Player>();
-        [ReadOnly] public List<Photon.Realtime.Player> playerorderphotonlist = new List<Photon.Realtime.Player>();
 
     [Foldout("Zones", true)]
         [ReadOnly] public Transform trash;
@@ -105,20 +104,32 @@ public class Manager : MonoBehaviour, IOnEventCallback
         blownUp.SetActive(false);
         abilityCollector.gameObject.SetActive(false);
         textCollector.gameObject.SetActive(false);
+        remainingsubmissions = (PhotonNetwork.IsConnected) ? 3 * PhotonNetwork.CurrentRoom.MaxPlayers : 3;
 
-        if (PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
         {
             deck.Shuffle();
             rep1deck.Shuffle();
             rep2deck.Shuffle();
             rep4deck.Shuffle();
         }
-        StartCoroutine(WaitForPlayer());
+
+        if (PhotonNetwork.IsConnected)
+        {
+            StartCoroutine(WaitForPlayer());
+        }
+        else
+        {
+            Player nextPlayer = Instantiate(playerClone);
+            nextPlayer.transform.SetParent(GameObject.Find("Store Players").transform);
+            nextPlayer.name = "You";
+            AddPlayer(0, "You");
+            StartCoroutine(PlayGame());
+        }
     }
 
     IEnumerator WaitForPlayer()
     {
-        remainingsubmissions = 3 * PhotonNetwork.CurrentRoom.MaxPlayers;
         GameObject x = GameObject.Find("Store Players");
         while (x.transform.childCount < PhotonNetwork.CurrentRoom.MaxPlayers)
         {
@@ -127,73 +138,107 @@ public class Manager : MonoBehaviour, IOnEventCallback
         }
 
         instructions.text = "Everyone's in! Setting up...";
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (PhotonNetwork.IsMasterClient)
         {
-            List<Photon.Realtime.Player> playerassignment = new List<Photon.Realtime.Player>();
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-                playerassignment.Add(PhotonNetwork.PlayerList[i]);
-
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                object[] sendingdata = new object[2];
-                sendingdata[0] = i;
-
-                int randomremove = UnityEngine.Random.Range(0, playerassignment.Count);
-                sendingdata[1] = playerassignment[randomremove];
-                playerassignment.RemoveAt(randomremove);
-
-                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-                { Receivers = ReceiverGroup.All };
-                PhotonNetwork.RaiseEvent(AddNextPlayerEvent, sendingdata, raiseEventOptions, SendOptions.SendReliable);
-            }
-
-            for (int i = 0; i < listoftiles.Count; i++)
-            {
-                object[] sendingdata = new object[1];
-                sendingdata[0] = i;
-                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-                { Receivers = ReceiverGroup.MasterClient };
-                PhotonNetwork.RaiseEvent(AssignCardToSiteEvent, sendingdata, raiseEventOptions, SendOptions.SendReliable);
-            }
-
-            yield return new WaitForSeconds(1f);
-            listoftiles[0].pv.RPC("FlipTile", RpcTarget.All, true);
-            listoftiles[4].pv.RPC("FlipTile", RpcTarget.All, true);
-            listoftiles[12].pv.RPC("FlipTile", RpcTarget.All, true);
-            listoftiles[20].pv.RPC("FlipTile", RpcTarget.All, true);
-            listoftiles[24].pv.RPC("FlipTile", RpcTarget.All, true);
-
-            for (int i = 0; i < playerordergameobject.Count; i++)
-            {
-                playerordergameobject[i].pv.RPC("RequestDraw", RpcTarget.MasterClient, 2);
-                playerordergameobject[i].pv.RPC("RequestPlacard", RpcTarget.MasterClient, 1);
-                playerordergameobject[i].pv.RPC("RequestPlacard", RpcTarget.MasterClient, 2);
-                playerordergameobject[i].pv.RPC("RequestPlacard", RpcTarget.MasterClient, 4);
-            }
-
-            yield return new WaitForSeconds(0.5f);
-            gameon = true;
-            while (gameon)
-            {
-                for (int i = 0; i < playerordergameobject.Count; i++)
-                {
-                    yield return playerordergameobject[i].TakeTurnRPC(playerordergameobject[i].photonplayer);
-                    yield return new WaitForSeconds(0.5f);
-
-                    if (remainingsubmissions <= 0)
-                        gameon = false;
-                }
-            }
-
-            GameOver("All submissions have been made.", -1);
+            yield return GetPlayers();
+            yield return PlayGame();
         }
     }
 
-#endregion
+    IEnumerator GetPlayers()
+    {
+        yield return null;
+        List<Photon.Realtime.Player> playerassignment = new List<Photon.Realtime.Player>();
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            playerassignment.Add(PhotonNetwork.PlayerList[i]);
+
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            object[] sendingdata = new object[2];
+            sendingdata[0] = i;
+
+            int randomremove = UnityEngine.Random.Range(0, playerassignment.Count);
+            sendingdata[1] = playerassignment[randomremove].NickName;
+            playerassignment.RemoveAt(randomremove);
+
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+            { Receivers = ReceiverGroup.All };
+            PhotonNetwork.RaiseEvent(AddNextPlayerEvent, sendingdata, raiseEventOptions, SendOptions.SendReliable);
+        }
+    }
+
+    void AddPlayer(int position, string name)
+    {
+        playerordergameobject.Add(GameObject.Find(name).GetComponent<Player>());
+
+        PlayerButton nextButton = playerButtonClone[position];
+        nextButton.transform.localPosition = new Vector3(-1100, 300 - 100 * position, 0);
+        nextButton.name = $"{name}'s Button";
+
+        switch (position)
+        {
+            case 0:
+                nextButton.image.color = Color.red;
+                break;
+            case 1:
+                nextButton.image.color = Color.blue;
+                break;
+            case 2:
+                nextButton.image.color = Color.yellow;
+                break;
+            case 3:
+                nextButton.image.color = Color.white;
+                break;
+        }
+
+        if (PhotonNetwork.IsConnected) playerordergameobject[position].pv.RPC("AssignInfo", RpcTarget.All, position); else playerordergameobject[position].AssignInfo(position);
+
+    }
+
+    #endregion
 
 #region Gameplay
+
+    IEnumerator PlayGame()
+    {
+        for (int i = 0; i < listoftiles.Count; i++)
+            listoftiles[i].CardFromDeckRPC();
+
+        yield return new WaitForSeconds(0.5f);
+
+        listoftiles[0].FlipCardRPC(true);
+        listoftiles[4].FlipCardRPC(true);
+        listoftiles[12].FlipCardRPC(true);
+        listoftiles[20].FlipCardRPC(true);
+        listoftiles[24].FlipCardRPC(true);
+
+        for (int i = 0; i < playerordergameobject.Count; i++)
+        {
+            playerordergameobject[i].DrawCardRPC(2);
+            playerordergameobject[i].RequestPlacardRPC(1);
+            playerordergameobject[i].RequestPlacardRPC(2);
+            playerordergameobject[i].RequestPlacardRPC(4);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        gameon = true;
+
+        while (gameon)
+        {
+            for (int i = 0; i < playerordergameobject.Count; i++)
+            {
+                yield return playerordergameobject[i].TakeTurnRPC();
+                yield return new WaitForSeconds(0.5f);
+
+                if (remainingsubmissions <= 0)
+                    gameon = false;
+            }
+        }
+
+        GameOver("All submissions have been made.", -1);
+    }
 
     private void FixedUpdate()
     {
@@ -251,46 +296,8 @@ public class Manager : MonoBehaviour, IOnEventCallback
         {
             object[] data = (object[])photonEvent.CustomData;
             int playerposition = (int)data[0];
-            Photon.Realtime.Player playername = (Photon.Realtime.Player)data[1];
-
-            playerordergameobject.Add(GameObject.Find(playername.NickName).GetComponent<Player>());
-            playerorderphotonlist.Add(playername);
-
-            PlayerButton nextButton = playerButtonClone[playerposition];
-            nextButton.transform.localPosition = new Vector3(-1000, 300 - 100 * playerposition, 0);
-            nextButton.name = $"{playername.NickName}'s Button";
-            nextButton.transform.localScale = new Vector3(2.5f, 2.5f, 0);
-
-            switch (playerposition)
-            {
-                case 0:
-                    nextButton.image.color = Color.red;
-                    break;
-                case 1:
-                    nextButton.image.color = Color.blue;
-                    break;
-                case 2:
-                    nextButton.image.color = Color.yellow;
-                    break;
-                case 3:
-                    nextButton.image.color = Color.white;
-                    break;
-            }
-
-            playerordergameobject[playerposition].pv.RPC("AssignInfo", RpcTarget.All, playerposition, playername);
-        }
-        else if (photonEvent.Code == AssignCardToSiteEvent)
-        {
-            object[] data = (object[])photonEvent.CustomData;
-            int tileposition = (int)data[0];
-
-            if (deck.childCount == 0)
-            {
-                instance.discard.Shuffle();
-                while (instance.discard.childCount > 0)
-                    instance.discard.GetChild(0).SetParent(Manager.instance.deck);
-            }
-            listoftiles[tileposition].pv.RPC("NewCard", RpcTarget.All, instance.deck.GetChild(0).GetComponent<PhotonView>().ViewID, false);
+            string playername = (string)data[1];
+            AddPlayer(playerposition, playername);
         }
         else if (photonEvent.Code == GameOverEvent)
         {
