@@ -13,7 +13,7 @@ public class PlayerButton : MonoBehaviour, IPointerClickHandler
     [ReadOnly] public TMP_Text textbox;
     [ReadOnly] public Button button;
     [ReadOnly] public PhotonView pv;
-    public SubmissionDepiction SD;
+    [SerializeField] SubmissionDepiction SD;
     [ReadOnly] public GameObject depiction;
 
     private void Awake()
@@ -44,14 +44,56 @@ public class PlayerButton : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    [PunRPC]
-    public void MadeSubmission(string total, int[] placardIDs, int[] cardIDs)
+    public void SubmissionRPC(string total, Placard[] placards, Card[] cards)
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            int[] placardIDs = new int[placards.Length];
+            int[] cardIDs = new int[cards.Length];
+
+            for (int i = 0; i < placards.Length; i++)
+                placardIDs[i] = placards[i].pv.ViewID;
+            for (int i = 0; i < cardIDs.Length; i++)
+                cardIDs[i] = cards[i].pv.ViewID;
+
+            pv.RPC("MadeSubmission", RpcTarget.All, total, placardIDs, cardIDs);
+        }
+        else
+        {
+            MadeSubmission(total, placards, cards);
+        }
+    }
+
+    void MadeSubmission(string total, Placard[] placards, Card[] cards)
     {
         SubmissionDepiction newSD = Instantiate(SD, depiction.transform);
         newSD.plusPoints.text = total;
-        for (int i = 0; i<placardIDs.Length; i++)
-            PhotonView.Find(placardIDs[i]).transform.SetParent(newSD.placards);
-        for (int i = 0; i<cardIDs.Length; i++)
-            PhotonView.Find(cardIDs[i]).transform.SetParent(newSD.cards);
+
+        foreach (Placard next in placards)
+        {
+            next.transform.SetParent(newSD.placards);
+            next.transform.localEulerAngles = new Vector3(0, 0, 0);
+            next.image.SetAlpha(1);
+        }
+        foreach (Card next in cards)
+        {
+            next.transform.SetParent(newSD.cards);
+            next.image.SetAlpha(1);
+            next.transform.localEulerAngles = new Vector3(0, 0, 0);
+        }
+    }
+
+    [PunRPC]
+    void MadeSubmission(string total, int[] placardIDs, int[] cardIDs)
+    {
+        Placard[] listOfPlacards = new Placard[placardIDs.Length];
+        Card[] listOfCards = new Card[cardIDs.Length];
+
+        for (int i = 0; i < placardIDs.Length; i++)
+            listOfPlacards[i] = PhotonView.Find(placardIDs[i]).GetComponent<Placard>();
+        for (int i = 0; i < cardIDs.Length; i++)
+            listOfCards[i] = PhotonView.Find(cardIDs[i]).GetComponent<Card>();
+
+        MadeSubmission(total, listOfPlacards, listOfCards);
     }
 }

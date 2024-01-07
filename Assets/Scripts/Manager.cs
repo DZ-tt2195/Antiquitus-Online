@@ -234,7 +234,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
             }
         }
 
-        GameOver("All submissions have been made.", -1);
+        Resign("All submissions have been made.", null);
     }
 
     private void FixedUpdate()
@@ -247,12 +247,12 @@ public class Manager : MonoBehaviour, IOnEventCallback
             decrease = !decrease;
     }
 
-    public void Update()
+    private void Update()
     {
         submissionText.text = $"{remainingsubmissions} Submissions Left";
     }
 
-    public void ChangeSorting()
+    void ChangeSorting()
     {
         if (sorting == Sorting.suit)
         {
@@ -274,15 +274,21 @@ public class Manager : MonoBehaviour, IOnEventCallback
         }
     }
 
-    public void GameOver(string endText, int resignPosition)
+    public void Resign(string ending, Player resigned)
     {
-        Debug.Log($"{endText}, {resignPosition}");
-        object[] sendingdata = new object[2];
-        sendingdata[0] = endText;
-        sendingdata[1] = resignPosition;
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
-        { Receivers = ReceiverGroup.All };
-        PhotonNetwork.RaiseEvent(GameOverEvent, sendingdata, raiseEventOptions, SendOptions.SendReliable);
+        if (PhotonNetwork.IsConnected)
+        {
+            object[] sendingdata = new object[2];
+            sendingdata[0] = ending;
+            sendingdata[1] = resigned.playerposition;
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+            { Receivers = ReceiverGroup.All };
+            PhotonNetwork.RaiseEvent(GameOverEvent, sendingdata, raiseEventOptions, SendOptions.SendReliable);
+        }
+        else
+        {
+            GameOver(ending, resigned);
+        }
     }
 
     public void OnEvent(EventData photonEvent)
@@ -299,33 +305,36 @@ public class Manager : MonoBehaviour, IOnEventCallback
             object[] data = (object[])photonEvent.CustomData;
             string endgame = (string)data[0];
             int resigningPlayer = (int)data[1];
-            Player rp = null;
 
-            endText.transform.parent.gameObject.SetActive(true);
-            instructions.text = endgame;
-            abilityCollector.gameObject.SetActive(false);
-            textCollector.gameObject.SetActive(false);
-            BlownUpImage.instance.mainObject.SetActive(false);
-            Log.instance.transform.SetAsLastSibling();
-
-            if (resigningPlayer > -1)
-                rp = playerordergameobject[resigningPlayer];
-
-            playerordergameobject = playerordergameobject.OrderByDescending(o => o.reputation).ToList();
-            endText.text = "";
-            int playerTracker = 1;
-
-            for (int i = 0; i < playerordergameobject.Count; i++)
-            {
-                if (i != resigningPlayer)
-                {
-                    endText.text += $"\n{playerTracker}: {playerordergameobject[i].name}, {playerordergameobject[i].reputation} REP";
-                    playerTracker++;
-                }
-            }
-            if (rp != null)
-                endText.text += $"\n\nResigned: {rp.name}: {rp.reputation} REP";
+            GameOver(endgame, playerordergameobject[resigningPlayer]);
         }
+    }
+
+    void GameOver(string ending, Player resigned)
+    {
+        endText.transform.parent.gameObject.SetActive(true);
+        instructions.text = ending;
+        abilityCollector.gameObject.SetActive(false);
+        textCollector.gameObject.SetActive(false);
+        BlownUpImage.instance.mainObject.SetActive(false);
+        Log.instance.transform.SetAsLastSibling();
+
+        playerordergameobject = playerordergameobject.OrderByDescending(o => o.reputation).ToList();
+        endText.text = "";
+        int playerTracker = 1;
+
+        for (int i = 0; i < playerordergameobject.Count; i++)
+        {
+            Player nextPlayer = playerordergameobject[i];
+            if (nextPlayer != resigned)
+            {
+                endText.text += $"\n{playerTracker}: {nextPlayer.name}, {nextPlayer.reputation} REP";
+                playerTracker++;
+            }
+        }
+
+        if (resigned != null)
+            endText.text += $"\n\nResigned: {resigned.name}: {resigned.reputation} REP";
     }
 
     #endregion

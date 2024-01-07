@@ -52,7 +52,6 @@ public class Bone : Card
         {
             TileData currentTile = Manager.instance.listoftiles[myArrow.groupoftiles[i].position];
             TileData previousTile = Manager.instance.listoftiles[myArrow.groupoftiles[i-1].position];
-            Debug.Log($"{previousTile.mycard.name} moved");
             currentTile.NewCardRPC(previousTile.mycard, previousTile.mycard.IsPublic(), false);
             yield return new WaitForSeconds(0.05f);
         }

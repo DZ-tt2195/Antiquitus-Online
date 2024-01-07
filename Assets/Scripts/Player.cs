@@ -5,6 +5,8 @@ using Photon.Pun;
 using UnityEngine.UI;
 using System.Linq;
 using MyBox;
+using ExitGames.Client.Photon;
+using Photon.Realtime;
 
 public class Player : MonoBehaviourPunCallbacks
 {
@@ -15,41 +17,40 @@ public class Player : MonoBehaviourPunCallbacks
     [ReadOnly] public int playerposition;
 
     [Foldout("Cards", true)]
-    [SerializeField] Transform cardhand;
-    [SerializeField] Transform placardhand;
-    [ReadOnly] public List<Card> listOfHand = new List<Card>();
-    [ReadOnly] public List<Placard> listOfPlacard = new List<Placard>();
-
+        [SerializeField] Transform cardhand;
+        [SerializeField] Transform placardhand;
+        [ReadOnly] public List<Card> listOfHand = new List<Card>();
+        [ReadOnly] public List<Placard> listOfPlacard = new List<Placard>();
+    
     [Foldout("UI", true)]
-    Canvas canvas;
-    Button resign;
-    [ReadOnly] public PlayerButton myButton;
-    [ReadOnly] Transform arrow;
-    Transform storePlayers;
-    int movePosition;
+        Canvas canvas;
+        Button resign;
+        [ReadOnly] public PlayerButton myButton;
+        [ReadOnly] Transform arrow;
+        Transform storePlayers;
+        int movePosition;
 
     [Foldout("Decisions", true)]
-
-    [ReadOnly] public string choice;
-    [ReadOnly] public Placard chosenPlacard;
-    [ReadOnly] public Card chosencard;
-    [ReadOnly] public TileData chosentile;
-    [ReadOnly] public WeaponBox chosenbox;
-    [ReadOnly] public BoneArrow chosenarrow;
+        [ReadOnly] public string choice;
+        [ReadOnly] public Placard chosenPlacard;
+        [ReadOnly] public Card chosencard;
+        [ReadOnly] public TileData chosentile;
+        [ReadOnly] public WeaponBox chosenbox;
+        [ReadOnly] public BoneArrow chosenarrow;
 
     [Foldout("Turns", true)]
-    [ReadOnly] public bool waiting;
-    [ReadOnly] public bool turnon;
-    [ReadOnly] public Card cardthisturn;
-    [ReadOnly] public TileData tilethisturn;
-    [ReadOnly] public int cardsdiscarded;
-    [ReadOnly] public int cardsrevealed;
-    [ReadOnly] public bool eventactivated;
+        [ReadOnly] public bool waiting;
+        [ReadOnly] public bool turnon;
+        [ReadOnly] public Card cardthisturn;
+        [ReadOnly] public TileData tilethisturn;
+        [ReadOnly] public int cardsdiscarded;
+        [ReadOnly] public int cardsrevealed;
+        [ReadOnly] public bool eventactivated;
 
     [Foldout("Score", true)]
-    [ReadOnly] public int turns;
-    [ReadOnly] public int reputation;
-    [ReadOnly] public int personalsubmissions;
+        [ReadOnly] public int turns;
+        [ReadOnly] public int reputation;
+        [ReadOnly] public int personalsubmissions;
 
     #endregion
 
@@ -129,10 +130,10 @@ public class Player : MonoBehaviourPunCallbacks
 
     void ResignTime()
     {
-        Manager.instance.GameOver($"{this.name} has resigned.", this.playerposition);
+        Manager.instance.Resign($"{this.name} has resigned.", this);
     }
 
-    #endregion
+#endregion
 
 #region Turns
 
@@ -189,7 +190,7 @@ public class Player : MonoBehaviourPunCallbacks
             photonView.RPC("WaitForPlayer", RpcTarget.Others, this.name);
 
         Log.instance.AddTextRPC($"");
-        Log.instance.AddTextRPC($"{this.name}'s Turn");
+        Log.instance.AddTextRPC($"{this.name}: Turn {turns}");
 
         yield return ChooseTileInSite();
         yield return new WaitForSeconds(0.5f);
@@ -272,7 +273,6 @@ public class Player : MonoBehaviourPunCallbacks
 
     IEnumerator AskForSubmission()
     {
-        yield return null;
         if (listOfHand.Count >= 2 && listOfPlacard.Count >= 1)
         {
             List<Card> submittedCards = new List<Card>();
@@ -339,10 +339,7 @@ public class Player : MonoBehaviourPunCallbacks
                     if (submittedPlacards[i].name == "Strength in Numbers")
                         StrengthInNumbers = submittedPlacards[i];
                     else if (submittedPlacards[i].CanSubmit(this, submittedCards))
-                    {
-                        Debug.Log($"{submittedPlacards[i].name} was successful");
                         successfulPlacards.Add(submittedPlacards[i]);
-                    }
                     else
                         Debug.Log($"{submittedPlacards[i].name} failed");
                 }
@@ -355,26 +352,28 @@ public class Player : MonoBehaviourPunCallbacks
                 if (successfulPlacards.Count >= 1)
                 {
                     Log.instance.AddTextRPC($"");
-                    int totalPoints = (successfulPlacards.Count - 1);
-                    int[] cardIDs = new int[submittedCards.Count];
-                    int[] placardIDs = new int[successfulPlacards.Count];
+                    int totalPoints = successfulPlacards.Count - 1;
+                    Card[] cardIDs = new Card[submittedCards.Count];
+                    Placard[] placardIDs = new Placard[successfulPlacards.Count];
 
                     for (int i = 0; i < submittedCards.Count; i++)
                     {
-                        cardIDs[i] = submittedCards[i].pv.ViewID;
+                        cardIDs[i] = submittedCards[i];
                         Log.instance.AddTextRPC($"{this.name} submits {submittedCards[i].logName}.");
                         submittedCards[i].TrashRPC(this.playerposition);
                     }
                     for (int i = 0; i < successfulPlacards.Count; i++)
                     {
                         totalPoints += successfulPlacards[i].rep;
-                        placardIDs[i] = successfulPlacards[i].pv.ViewID;
+                        placardIDs[i] = successfulPlacards[i];
                         Log.instance.AddTextRPC($"{this.name} submits {successfulPlacards[i].logName}.");
                         successfulPlacards[i].TrashRPC(this.playerposition);
                     }
 
+                    yield return new WaitForSeconds(1f);
+
                     if (PhotonNetwork.IsConnected) this.pv.RPC("MadeSubmission", RpcTarget.All, totalPoints); else MadeSubmission(totalPoints);
-                    myButton.pv.RPC("MadeSubmission", RpcTarget.All, $"{this.name}: +{totalPoints}", placardIDs, cardIDs);
+                    myButton.SubmissionRPC($"{this.name}: +{totalPoints}", placardIDs, cardIDs);
                     Log.instance.AddTextRPC($"{this.name} scores {totalPoints} REP.");
 
                     yield return ChoosePlacard();
@@ -426,7 +425,6 @@ public class Player : MonoBehaviourPunCallbacks
     {
         listOfHand.Remove(discardMe);
         SortHand();
-        Debug.LogError($"discarded {discardMe.name}");
 
         discardMe.transform.SetParent(Manager.instance.discard);
         discardMe.MoveCardRPC(new float[] { -1500, 0 }, new float[] { 0, 0, 0 }, 0.3f);
@@ -567,11 +565,11 @@ public class Player : MonoBehaviourPunCallbacks
             Manager.instance.ClearButtons();
 
             if (this.choice == "1 REP")
-                pv.RPC("RequestPlacard", RpcTarget.MasterClient, 1);
+                RequestPlacardRPC(1);
             else if (this.choice == "2 REP")
-                pv.RPC("RequestPlacard", RpcTarget.MasterClient, 2);
+                RequestPlacardRPC(2);
             else if (this.choice == "4 REP")
-                pv.RPC("RequestPlacard", RpcTarget.MasterClient, 4);
+                RequestPlacardRPC(4);
         }
     }
 

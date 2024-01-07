@@ -58,7 +58,7 @@ public class Log : MonoBehaviour
         linesOfText++;
         textBox.text += text + "\n";
 
-        if (linesOfText >= 40)
+        if (linesOfText >= 31)
         {
             textRT.sizeDelta = new Vector2(510, textRT.sizeDelta.y+34.5f);
 
