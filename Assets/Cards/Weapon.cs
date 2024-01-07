@@ -41,7 +41,7 @@ public class Weapon : Card
             }
         }
 
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+        Log.instance.AddTextRPC($"");
 
         for (int i = 0; i < storebox.groupofTiles.Count; i++)
         {
@@ -49,7 +49,10 @@ public class Weapon : Card
             Manager.instance.instructions.text = $"Put a card on this tile.";
 
             for (int j = 0; j < storecards.Count; j++)
+            {
+                StartCoroutine(storecards[j].FlipCard(0, storecards[j].originalSprite));
                 Manager.instance.AddCardButton(player, storecards[j], true);
+            }
 
             player.choice = "";
             player.chosencard = null;
@@ -76,13 +79,13 @@ public class Weapon : Card
 
             if (player.choice == "Face Up")
             {
-                Manager.instance.listoftiles[storebox.groupofTiles[i].position].NewCardRPC(nextCard, true);
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts {nextCard.logName} into the Site.");
+                Manager.instance.listoftiles[storebox.groupofTiles[i].position].NewCardRPC(nextCard, true, true);
+                Log.instance.AddTextRPC($"{player.name} puts {nextCard.logName} into the Site.");
             }
             else
             {
-                Manager.instance.listoftiles[storebox.groupofTiles[i].position].NewCardRPC(nextCard, false);
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts a card into the Site.");
+                Manager.instance.listoftiles[storebox.groupofTiles[i].position].NewCardRPC(nextCard, false, true);
+                Log.instance.AddTextRPC($"{player.name} puts a card into the Site.");
             }
         }
 

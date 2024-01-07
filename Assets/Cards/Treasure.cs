@@ -15,7 +15,7 @@ public class Treasure : Card
     {
         player.eventactivated = true;
         pv.RPC("TrashThis", RpcTarget.All, -1);
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} trashes {this.logName}.");
+        Log.instance.AddTextRPC($"{player.name} trashes {this.logName}.");
 
         int playertracker = player.playerposition;
 
@@ -23,7 +23,7 @@ public class Treasure : Card
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
             nextplayer.DrawCardRPC(1);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
             playertracker = (playertracker == Manager.instance.playerordergameobject.Count - 1) ? 0 : playertracker + 1;
         }
     }

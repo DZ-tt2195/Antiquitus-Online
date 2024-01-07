@@ -49,7 +49,7 @@ public class TileData : MonoBehaviourPunCallbacks
         if (mycard != null)
         {
             mycard.transform.SetParent(Manager.instance.discard);
-            StartCoroutine(mycard.MoveCard(new Vector2(-2000, -330), new Vector3(0, 0, 0), 0.3f));
+            mycard.MoveCardRPC(new float[] { -2000, -330 }, new float[] { 0, 0, 0 }, 0.3f);
             mycard = null;
         }
     }
@@ -76,30 +76,31 @@ public class TileData : MonoBehaviourPunCallbacks
                 Manager.instance.discard.GetChild(0).SetParent(Manager.instance.deck);
         }
 
-        NewCardRPC(Manager.instance.deck.GetChild(0).GetComponent<Card>(), false);
+        NewCardRPC(Manager.instance.deck.GetChild(0).GetComponent<Card>(), false, true);
     }
 
-    public void NewCardRPC(Card card, bool faceUp)
+    public void NewCardRPC(Card card, bool faceUp, bool fromDeck)
     {
         if (PhotonNetwork.IsConnected)
-            pv.RPC("NewCard", RpcTarget.All, card.pv.ViewID, faceUp);
+            pv.RPC("NewCard", RpcTarget.All, card.pv.ViewID, faceUp, fromDeck);
         else
-            NewCard(card, faceUp);
+            NewCard(card, faceUp, fromDeck);
     }
 
-    void NewCard(Card card, bool faceUp)
+    void NewCard(Card card, bool faceUp, bool fromDeck)
     {
         mycard = card;
         card.transform.SetParent(this.transform);
         card.transform.SetAsFirstSibling();
+        if (fromDeck) card.transform.localPosition = new Vector3(0, 1500, 0);
         card.image.sprite = faceUp ? card.originalSprite : facedownsprite;
-        StartCoroutine(card.MoveCard(new Vector2(0, 0), new Vector3(0, 0), 0.3f));
+        card.MoveCardRPC(new float[] { 0, 0 }, new float[] { 0, 0, 0 }, 0.3f);
     }
 
     [PunRPC]
-    void NewCard(int cardID, bool faceUp)
+    void NewCard(int cardID, bool faceUp, bool fromDeck)
     {
-        NewCard(PhotonView.Find(cardID).gameObject.GetComponent<Card>(), faceUp);
+        NewCard(PhotonView.Find(cardID).gameObject.GetComponent<Card>(), faceUp, fromDeck);
     }
 
     public void FlipCardRPC(bool faceUp)

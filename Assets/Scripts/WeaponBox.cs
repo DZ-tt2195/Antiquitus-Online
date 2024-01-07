@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyBox;
 
 public class WeaponBox : MonoBehaviour
 {
-    [HideInInspector] public SendChoice choicescript;
-    [HideInInspector] public List<TileData> groupofTiles = new List<TileData>();
+    [ReadOnly] public SendChoice choicescript;
+    [ReadOnly] public List<TileData> groupofTiles = new List<TileData>();
     public int firstTile;
 
     private void Awake()
@@ -15,6 +16,7 @@ public class WeaponBox : MonoBehaviour
 
     private void Start()
     {
+        groupofTiles.Clear();
         TileData tileOne = Manager.instance.listoftiles[firstTile];
 
         groupofTiles.Add(Manager.instance.FindTile(tileOne.row, tileOne.column));

@@ -198,81 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6285578}
   m_CullTransparentMesh: 1
---- !u!1 &10902489
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 10902490}
-  - component: {fileID: 10902492}
-  - component: {fileID: 10902491}
-  m_Layer: 5
-  m_Name: Border
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &10902490
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10902489}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0972, y: 1.0972, z: 1.0972}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981808704}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9088001, y: 0.191}
-  m_SizeDelta: {x: 200.7247, y: 121.0149}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &10902491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10902489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bcdea499692b245c5b58a11e4edfc0c6, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &10902492
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10902489}
-  m_CullTransparentMesh: 1
 --- !u!1 &11861457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,12 +1699,10 @@ GameObject:
   m_Component:
   - component: {fileID: 62581078}
   - component: {fileID: 62581083}
-  - component: {fileID: 62581082}
   - component: {fileID: 62581081}
   - component: {fileID: 62581080}
   - component: {fileID: 62581079}
   - component: {fileID: 62581084}
-  - component: {fileID: 62581085}
   m_Layer: 5
   m_Name: Tile 0
   m_TagString: Untagged
@@ -1891,40 +1814,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 62581082}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &62581082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62581077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &62581083
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1955,19 +1848,6 @@ MonoBehaviour:
   sceneViewId: 74
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &62581085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62581077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &68531961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4990,12 +4870,10 @@ GameObject:
   m_Component:
   - component: {fileID: 164697727}
   - component: {fileID: 164697732}
-  - component: {fileID: 164697731}
   - component: {fileID: 164697730}
   - component: {fileID: 164697729}
   - component: {fileID: 164697728}
   - component: {fileID: 164697733}
-  - component: {fileID: 164697734}
   m_Layer: 5
   m_Name: Tile 23
   m_TagString: Untagged
@@ -5106,40 +4984,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 164697731}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &164697731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164697726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &164697732
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5170,19 +5018,6 @@ MonoBehaviour:
   sceneViewId: 96
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &164697734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164697726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &170937104
 GameObject:
   m_ObjectHideFlags: 0
@@ -7822,12 +7657,10 @@ GameObject:
   m_Component:
   - component: {fileID: 298755480}
   - component: {fileID: 298755485}
-  - component: {fileID: 298755484}
   - component: {fileID: 298755483}
   - component: {fileID: 298755482}
   - component: {fileID: 298755481}
   - component: {fileID: 298755486}
-  - component: {fileID: 298755487}
   m_Layer: 5
   m_Name: Tile 19
   m_TagString: Untagged
@@ -7938,40 +7771,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 298755484}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &298755484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298755479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &298755485
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8002,19 +7805,6 @@ MonoBehaviour:
   sceneViewId: 87
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &298755487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298755479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &306524713
 GameObject:
   m_ObjectHideFlags: 0
@@ -8422,12 +8212,10 @@ GameObject:
   m_Component:
   - component: {fileID: 321500045}
   - component: {fileID: 321500050}
-  - component: {fileID: 321500049}
   - component: {fileID: 321500048}
   - component: {fileID: 321500047}
   - component: {fileID: 321500046}
   - component: {fileID: 321500051}
-  - component: {fileID: 321500052}
   m_Layer: 5
   m_Name: Tile 3
   m_TagString: Untagged
@@ -8538,40 +8326,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 321500049}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &321500049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321500044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &321500050
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8602,19 +8360,6 @@ MonoBehaviour:
   sceneViewId: 82
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &321500052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321500044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &325536954
 GameObject:
   m_ObjectHideFlags: 0
@@ -8879,12 +8624,10 @@ GameObject:
   m_Component:
   - component: {fileID: 336038346}
   - component: {fileID: 336038351}
-  - component: {fileID: 336038350}
   - component: {fileID: 336038349}
   - component: {fileID: 336038348}
   - component: {fileID: 336038347}
   - component: {fileID: 336038352}
-  - component: {fileID: 336038353}
   m_Layer: 5
   m_Name: Tile 16
   m_TagString: Untagged
@@ -8994,40 +8737,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 336038350}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &336038350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336038345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &336038351
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9058,19 +8771,6 @@ MonoBehaviour:
   sceneViewId: 86
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &336038353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336038345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &338951821
 GameObject:
   m_ObjectHideFlags: 0
@@ -9714,12 +9414,10 @@ GameObject:
   m_Component:
   - component: {fileID: 373046600}
   - component: {fileID: 373046605}
-  - component: {fileID: 373046604}
   - component: {fileID: 373046603}
   - component: {fileID: 373046602}
   - component: {fileID: 373046601}
   - component: {fileID: 373046606}
-  - component: {fileID: 373046607}
   m_Layer: 5
   m_Name: Tile 15
   m_TagString: Untagged
@@ -9830,40 +9528,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 373046604}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &373046604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373046599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &373046605
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9894,19 +9562,6 @@ MonoBehaviour:
   sceneViewId: 89
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &373046607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373046599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &382555282
 GameObject:
   m_ObjectHideFlags: 0
@@ -10558,12 +10213,10 @@ GameObject:
   m_Component:
   - component: {fileID: 398965405}
   - component: {fileID: 398965410}
-  - component: {fileID: 398965409}
   - component: {fileID: 398965408}
   - component: {fileID: 398965407}
   - component: {fileID: 398965406}
   - component: {fileID: 398965411}
-  - component: {fileID: 398965412}
   m_Layer: 5
   m_Name: Tile 11
   m_TagString: Untagged
@@ -10673,40 +10326,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 398965409}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &398965409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398965404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &398965410
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10737,19 +10360,6 @@ MonoBehaviour:
   sceneViewId: 91
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &398965412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398965404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &410335662
 GameObject:
   m_ObjectHideFlags: 0
@@ -11299,11 +10909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 427817727}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 16
 --- !u!114 &427817729
 MonoBehaviour:
@@ -12831,12 +12437,10 @@ GameObject:
   m_Component:
   - component: {fileID: 473986054}
   - component: {fileID: 473986059}
-  - component: {fileID: 473986058}
   - component: {fileID: 473986057}
   - component: {fileID: 473986056}
   - component: {fileID: 473986055}
   - component: {fileID: 473986060}
-  - component: {fileID: 473986061}
   m_Layer: 5
   m_Name: Tile 4
   m_TagString: Untagged
@@ -12948,40 +12552,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 473986058}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &473986058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473986053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &473986059
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13012,19 +12586,6 @@ MonoBehaviour:
   sceneViewId: 76
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &473986061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473986053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &482694804
 GameObject:
   m_ObjectHideFlags: 0
@@ -13386,12 +12947,10 @@ GameObject:
   m_Component:
   - component: {fileID: 502445419}
   - component: {fileID: 502445424}
-  - component: {fileID: 502445423}
   - component: {fileID: 502445422}
   - component: {fileID: 502445421}
   - component: {fileID: 502445420}
   - component: {fileID: 502445425}
-  - component: {fileID: 502445426}
   m_Layer: 5
   m_Name: Tile 18
   m_TagString: Untagged
@@ -13501,40 +13060,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 502445423}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &502445423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502445418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &502445424
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13565,19 +13094,6 @@ MonoBehaviour:
   sceneViewId: 90
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &502445426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502445418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &502469097
 GameObject:
   m_ObjectHideFlags: 0
@@ -13902,11 +13418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 502538622}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 13
 --- !u!114 &502538624
 MonoBehaviour:
@@ -14324,12 +13836,10 @@ GameObject:
   m_Component:
   - component: {fileID: 540691501}
   - component: {fileID: 540691506}
-  - component: {fileID: 540691505}
   - component: {fileID: 540691504}
   - component: {fileID: 540691503}
   - component: {fileID: 540691502}
   - component: {fileID: 540691507}
-  - component: {fileID: 540691508}
   m_Layer: 5
   m_Name: Tile 12
   m_TagString: Untagged
@@ -14439,40 +13949,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 540691505}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &540691505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540691500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &540691506
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14503,19 +13983,6 @@ MonoBehaviour:
   sceneViewId: 80
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &540691508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540691500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &541034532
 GameObject:
   m_ObjectHideFlags: 0
@@ -16171,12 +15638,10 @@ GameObject:
   m_Component:
   - component: {fileID: 626396002}
   - component: {fileID: 626396007}
-  - component: {fileID: 626396006}
   - component: {fileID: 626396005}
   - component: {fileID: 626396004}
   - component: {fileID: 626396003}
   - component: {fileID: 626396008}
-  - component: {fileID: 626396009}
   m_Layer: 5
   m_Name: Tile 22
   m_TagString: Untagged
@@ -16287,40 +15752,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 626396006}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &626396006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626396001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &626396007
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16351,19 +15786,6 @@ MonoBehaviour:
   sceneViewId: 77
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &626396009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626396001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &627495979
 GameObject:
   m_ObjectHideFlags: 0
@@ -17946,11 +17368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 686719352}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 0
 --- !u!114 &686719354
 MonoBehaviour:
@@ -20754,11 +20172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 798070744}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 2
 --- !u!114 &798070746
 MonoBehaviour:
@@ -22098,11 +21512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 867251998}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 11
 --- !u!114 &867252000
 MonoBehaviour:
@@ -22993,12 +22403,10 @@ GameObject:
   m_Component:
   - component: {fileID: 929052579}
   - component: {fileID: 929052584}
-  - component: {fileID: 929052583}
   - component: {fileID: 929052582}
   - component: {fileID: 929052581}
   - component: {fileID: 929052580}
   - component: {fileID: 929052585}
-  - component: {fileID: 929052586}
   m_Layer: 5
   m_Name: Tile 6
   m_TagString: Untagged
@@ -23108,40 +22516,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 929052583}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &929052583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929052578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &929052584
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23172,19 +22550,6 @@ MonoBehaviour:
   sceneViewId: 83
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &929052586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929052578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &929574166
 GameObject:
   m_ObjectHideFlags: 0
@@ -24024,7 +23389,7 @@ GameObject:
   - component: {fileID: 981808706}
   - component: {fileID: 981808705}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Placard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24041,14 +23406,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 10902490}
+  m_Children: []
   m_Father: {fileID: 1585557942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1220, y: -700}
-  m_SizeDelta: {x: 1000, y: 750}
+  m_SizeDelta: {x: 1250, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981808705
 MonoBehaviour:
@@ -24744,12 +24108,10 @@ GameObject:
   m_Component:
   - component: {fileID: 995046031}
   - component: {fileID: 995046036}
-  - component: {fileID: 995046035}
   - component: {fileID: 995046034}
   - component: {fileID: 995046033}
   - component: {fileID: 995046032}
   - component: {fileID: 995046037}
-  - component: {fileID: 995046038}
   m_Layer: 5
   m_Name: Tile 21
   m_TagString: Untagged
@@ -24860,40 +24222,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 995046035}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &995046035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995046030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &995046036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24924,19 +24256,6 @@ MonoBehaviour:
   sceneViewId: 75
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &995046038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995046030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1008562943
 GameObject:
   m_ObjectHideFlags: 0
@@ -25535,81 +24854,6 @@ MonoBehaviour:
   mybox: {fileID: 0}
   myarrow: {fileID: 0}
   myPlacard: {fileID: 0}
---- !u!1 &1027304516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1027304517}
-  - component: {fileID: 1027304519}
-  - component: {fileID: 1027304518}
-  m_Layer: 5
-  m_Name: Border
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1027304517
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027304516}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0972, y: 1.0972, z: 1.0972}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2137826888}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.968, y: -1.6461}
-  m_SizeDelta: {x: 282.859, y: 286.998}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1027304518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027304516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bcdea499692b245c5b58a11e4edfc0c6, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1027304519
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027304516}
-  m_CullTransparentMesh: 1
 --- !u!1 &1027354811
 GameObject:
   m_ObjectHideFlags: 0
@@ -27108,6 +26352,7 @@ GameObject:
   - component: {fileID: 1083301773}
   - component: {fileID: 1083301772}
   - component: {fileID: 1083301774}
+  - component: {fileID: 1083301775}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -27227,7 +26472,6 @@ MonoBehaviour:
   rep1deck: {fileID: 0}
   rep2deck: {fileID: 0}
   rep4deck: {fileID: 0}
-  blownUp: {fileID: 1585557941}
   endText: {fileID: 1310682317}
   leaveRoom: {fileID: 849331460}
   opacity: 1
@@ -27274,6 +26518,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0733b4446e9f041f99b6fb2d892bdac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1083301775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083301769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb2762e44b8c44b48d9746d42489106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainObject: {fileID: 1585557941}
+  reminderSheet: {fileID: 1294353120}
+  card: {fileID: 2137826889}
+  placard: {fileID: 981808709}
 --- !u!1 &1085703880
 GameObject:
   m_ObjectHideFlags: 0
@@ -27394,11 +26654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1085703883}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 18
 --- !u!114 &1085703885
 MonoBehaviour:
@@ -29691,12 +28947,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1227140147}
   - component: {fileID: 1227140152}
-  - component: {fileID: 1227140151}
   - component: {fileID: 1227140150}
   - component: {fileID: 1227140149}
   - component: {fileID: 1227140148}
   - component: {fileID: 1227140153}
-  - component: {fileID: 1227140154}
   m_Layer: 5
   m_Name: Tile 14
   m_TagString: Untagged
@@ -29807,40 +29061,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1227140151}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1227140151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227140146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1227140152
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29871,19 +29095,6 @@ MonoBehaviour:
   sceneViewId: 79
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1227140154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227140146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1228666285
 GameObject:
   m_ObjectHideFlags: 0
@@ -30776,7 +29987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f452402827249b19ee377a25706c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 572556303}
 --- !u!114 &1247590046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31064,12 +30275,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1256448528}
   - component: {fileID: 1256448533}
-  - component: {fileID: 1256448532}
   - component: {fileID: 1256448531}
   - component: {fileID: 1256448535}
   - component: {fileID: 1256448534}
   - component: {fileID: 1256448536}
-  - component: {fileID: 1256448537}
   m_Layer: 5
   m_Name: Tile 9
   m_TagString: Untagged
@@ -31138,40 +30347,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1256448532}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1256448532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256448527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1256448533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31244,19 +30423,6 @@ MonoBehaviour:
   sceneViewId: 72
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1256448537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256448527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1275516039
 GameObject:
   m_ObjectHideFlags: 0
@@ -31267,12 +30433,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1275516040}
   - component: {fileID: 1275516045}
-  - component: {fileID: 1275516044}
   - component: {fileID: 1275516043}
   - component: {fileID: 1275516042}
   - component: {fileID: 1275516041}
   - component: {fileID: 1275516046}
-  - component: {fileID: 1275516047}
   m_Layer: 5
   m_Name: Tile 5
   m_TagString: Untagged
@@ -31383,40 +30547,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1275516044}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1275516044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275516039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1275516045
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31447,19 +30581,6 @@ MonoBehaviour:
   sceneViewId: 78
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1275516047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275516039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1277284256
 GameObject:
   m_ObjectHideFlags: 0
@@ -31655,11 +30776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1281764016}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 7
 --- !u!114 &1281764018
 MonoBehaviour:
@@ -32317,7 +31434,7 @@ GameObject:
   - component: {fileID: 1294353123}
   - component: {fileID: 1294353122}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Reminder Sheet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32701,11 +31818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1299228268}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 17
 --- !u!114 &1299228270
 MonoBehaviour:
@@ -33039,12 +32152,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1312337844}
   - component: {fileID: 1312337849}
-  - component: {fileID: 1312337848}
   - component: {fileID: 1312337847}
   - component: {fileID: 1312337846}
   - component: {fileID: 1312337845}
   - component: {fileID: 1312337850}
-  - component: {fileID: 1312337851}
   m_Layer: 5
   m_Name: Tile 13
   m_TagString: Untagged
@@ -33154,40 +32265,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1312337848}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1312337848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312337843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1312337849
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33218,19 +32299,6 @@ MonoBehaviour:
   sceneViewId: 95
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1312337851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312337843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1318440619
 GameObject:
   m_ObjectHideFlags: 0
@@ -34242,11 +33310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1390410852}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 3
 --- !u!114 &1390410854
 MonoBehaviour:
@@ -36389,11 +35453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1442811717}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 12
 --- !u!114 &1442811719
 MonoBehaviour:
@@ -36843,12 +35903,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1454011848}
   - component: {fileID: 1454011853}
-  - component: {fileID: 1454011852}
   - component: {fileID: 1454011851}
   - component: {fileID: 1454011850}
   - component: {fileID: 1454011849}
   - component: {fileID: 1454011854}
-  - component: {fileID: 1454011855}
   m_Layer: 5
   m_Name: Tile 10
   m_TagString: Untagged
@@ -36959,40 +36017,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1454011852}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1454011852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454011847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1454011853
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37023,19 +36051,6 @@ MonoBehaviour:
   sceneViewId: 73
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1454011855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454011847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1463900485
 GameObject:
   m_ObjectHideFlags: 0
@@ -37585,11 +36600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1493770621}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 10
 --- !u!114 &1493770623
 MonoBehaviour:
@@ -39603,9 +38614,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 981808704}
   - {fileID: 1294353121}
   - {fileID: 2137826888}
+  - {fileID: 981808704}
   m_Father: {fileID: 572556304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -42618,12 +41629,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1681935917}
   - component: {fileID: 1681935922}
-  - component: {fileID: 1681935921}
   - component: {fileID: 1681935920}
   - component: {fileID: 1681935919}
   - component: {fileID: 1681935918}
   - component: {fileID: 1681935923}
-  - component: {fileID: 1681935924}
   m_Layer: 5
   m_Name: Tile 1
   m_TagString: Untagged
@@ -42734,40 +41743,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1681935921}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1681935921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681935916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1681935922
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42798,19 +41777,6 @@ MonoBehaviour:
   sceneViewId: 84
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1681935924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681935916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1691719853
 GameObject:
   m_ObjectHideFlags: 0
@@ -43081,11 +42047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1699359964}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 8
 --- !u!114 &1699359966
 MonoBehaviour:
@@ -43320,11 +42282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1715943575}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 5
 --- !u!114 &1715943577
 MonoBehaviour:
@@ -44393,11 +43351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1770027592}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 15
 --- !u!114 &1770027594
 MonoBehaviour:
@@ -45284,12 +44238,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1831039190}
   - component: {fileID: 1831039195}
-  - component: {fileID: 1831039194}
   - component: {fileID: 1831039193}
   - component: {fileID: 1831039192}
   - component: {fileID: 1831039191}
   - component: {fileID: 1831039196}
-  - component: {fileID: 1831039197}
   m_Layer: 5
   m_Name: Tile 24
   m_TagString: Untagged
@@ -45401,40 +44353,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1831039194}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1831039194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831039189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1831039195
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45465,19 +44387,6 @@ MonoBehaviour:
   sceneViewId: 85
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1831039197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831039189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1834925043
 GameObject:
   m_ObjectHideFlags: 0
@@ -45971,12 +44880,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1864149353}
   - component: {fileID: 1864149358}
-  - component: {fileID: 1864149357}
   - component: {fileID: 1864149356}
   - component: {fileID: 1864149355}
   - component: {fileID: 1864149354}
   - component: {fileID: 1864149359}
-  - component: {fileID: 1864149360}
   m_Layer: 5
   m_Name: Tile 2
   m_TagString: Untagged
@@ -46087,40 +44994,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1864149357}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1864149357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864149352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1864149358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46151,19 +45028,6 @@ MonoBehaviour:
   sceneViewId: 92
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1864149360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864149352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1867279718
 GameObject:
   m_ObjectHideFlags: 0
@@ -46498,12 +45362,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1910837967}
   - component: {fileID: 1910837972}
-  - component: {fileID: 1910837971}
   - component: {fileID: 1910837970}
   - component: {fileID: 1910837969}
   - component: {fileID: 1910837968}
   - component: {fileID: 1910837973}
-  - component: {fileID: 1910837974}
   m_Layer: 5
   m_Name: Tile 7
   m_TagString: Untagged
@@ -46613,40 +45475,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1910837971}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1910837971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910837966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1910837972
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46677,19 +45509,6 @@ MonoBehaviour:
   sceneViewId: 88
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1910837974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910837966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1917782969
 GameObject:
   m_ObjectHideFlags: 0
@@ -46850,12 +45669,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1924447503}
   - component: {fileID: 1924447508}
-  - component: {fileID: 1924447507}
   - component: {fileID: 1924447506}
   - component: {fileID: 1924447505}
   - component: {fileID: 1924447504}
   - component: {fileID: 1924447509}
-  - component: {fileID: 1924447510}
   m_Layer: 5
   m_Name: Tile 20
   m_TagString: Untagged
@@ -46967,40 +45784,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1924447507}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1924447507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924447502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1924447508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47031,19 +45818,6 @@ MonoBehaviour:
   sceneViewId: 93
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1924447510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924447502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1929225071
 GameObject:
   m_ObjectHideFlags: 0
@@ -47098,13 +45872,13 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: -115
+    m_Top: -90
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_StartCorner: 1
   m_StartAxis: 1
   m_CellSize: {x: 175, y: 175}
-  m_Spacing: {x: -200, y: 0}
+  m_Spacing: {x: -350, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!114 &1929225074
@@ -47523,12 +46297,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1939228115}
   - component: {fileID: 1939228120}
-  - component: {fileID: 1939228119}
   - component: {fileID: 1939228118}
   - component: {fileID: 1939228117}
   - component: {fileID: 1939228116}
   - component: {fileID: 1939228121}
-  - component: {fileID: 1939228122}
   m_Layer: 5
   m_Name: Tile 8
   m_TagString: Untagged
@@ -47638,40 +46410,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 1939228119}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1939228119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939228114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1939228120
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47702,19 +46444,6 @@ MonoBehaviour:
   sceneViewId: 94
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1939228122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939228114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &1941552233
 GameObject:
   m_ObjectHideFlags: 0
@@ -48474,13 +47203,13 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 100
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_StartCorner: 1
   m_StartAxis: 1
   m_CellSize: {x: 260, y: 180}
-  m_Spacing: {x: -155, y: 0}
+  m_Spacing: {x: 25, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!114 &1984673837
@@ -48655,11 +47384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1985332696}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 6
 --- !u!114 &1985332698
 MonoBehaviour:
@@ -49023,11 +47748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicescript: {fileID: 1999803554}
-  groupofTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  groupofTiles: []
   firstTile: 1
 --- !u!114 &1999803556
 MonoBehaviour:
@@ -52343,12 +51064,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2126413814}
   - component: {fileID: 2126413819}
-  - component: {fileID: 2126413818}
   - component: {fileID: 2126413817}
   - component: {fileID: 2126413816}
   - component: {fileID: 2126413815}
   - component: {fileID: 2126413820}
-  - component: {fileID: 2126413821}
   m_Layer: 5
   m_Name: Tile 17
   m_TagString: Untagged
@@ -52458,40 +51177,10 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 2126413818}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2126413818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126413813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2126413819
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52522,19 +51211,6 @@ MonoBehaviour:
   sceneViewId: 81
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &2126413821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126413813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94ed0b57204a4a4e81f2c7d9791f6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 1
 --- !u!1 &2128379630
 GameObject:
   m_ObjectHideFlags: 0
@@ -52622,7 +51298,7 @@ GameObject:
   - component: {fileID: 2137826890}
   - component: {fileID: 2137826889}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52639,8 +51315,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1027304517}
+  m_Children: []
   m_Father: {fileID: 1585557942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}

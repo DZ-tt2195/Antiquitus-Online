@@ -18,7 +18,7 @@ public class RightClick : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Manager.instance.NewImage(image, isCard);
+            BlownUpImage.instance.NewImage(image, isCard);
         }
     }
 }

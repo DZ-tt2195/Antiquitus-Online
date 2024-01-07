@@ -32,27 +32,34 @@ public class SendChoice : MonoBehaviour
         myarrow = this.GetComponent<BoneArrow>();
         myPlacard = this.GetComponent<Placard>();
 
-        if (mybox != null || myarrow != null)
+        try
         {
-            border = this.GetComponent<Image>();
+            if (mybox != null || myarrow != null)
+            {
+                border = this.GetComponent<Image>();
+            }
+            else if (card != null)
+            {
+                border = this.transform.GetChild(0).GetComponent<Image>();
+                border.transform.localPosition = new Vector2(0, 0);
+                border.rectTransform.sizeDelta = new Vector2(175, 175);
+            }
+            else if (myPlacard != null)
+            {
+                border = this.transform.GetChild(0).GetComponent<Image>();
+                border.transform.localPosition = new Vector2(0, 0);
+                border.rectTransform.sizeDelta = new Vector2(260, 180);
+            }
+            else if (mytile != null)
+            {
+                border = this.transform.GetChild(0).GetComponent<Image>();
+                border.transform.localPosition = new Vector2(0, 0);
+                border.rectTransform.sizeDelta = new Vector2(175, 175);
+            }
         }
-        else if (card != null)
+        catch
         {
-            border = this.transform.GetChild(0).GetComponent<Image>();
-            border.transform.localPosition = new Vector2(0, 0);
-            border.rectTransform.sizeDelta = new Vector2(175, 175);
-        }
-        else if (myPlacard != null)
-        {
-            border = this.transform.GetChild(0).GetComponent<Image>();
-            border.transform.localPosition = new Vector2(0, 0);
-            border.rectTransform.sizeDelta = new Vector2(260, 180);
-        }
-        else if (mytile != null)
-        {
-            border = this.transform.GetChild(0).GetComponent<Image>();
-            border.transform.localPosition = new Vector2(0, 0);
-            border.rectTransform.sizeDelta = new Vector2(175, 175);
+            //do nothing
         }
     }
 

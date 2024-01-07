@@ -52,7 +52,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
         Transform abilityCollector;
         Transform textCollector;
         List<SendChoice> buttonsInCollector = new List<SendChoice>();
-        [ReadOnly] public GameObject blownUp;
         [ReadOnly] public TMP_Text endText;
         [ReadOnly] public Button leaveRoom;
         Button sortingButton;
@@ -101,7 +100,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
     {
         leaveRoom.onClick.AddListener(Quit);
         endText.transform.parent.gameObject.SetActive(false);
-        blownUp.SetActive(false);
         abilityCollector.gameObject.SetActive(false);
         textCollector.gameObject.SetActive(false);
         remainingsubmissions = (PhotonNetwork.IsConnected) ? 3 * PhotonNetwork.CurrentRoom.MaxPlayers : 3;
@@ -206,7 +204,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
         for (int i = 0; i < listoftiles.Count; i++)
             listoftiles[i].CardFromDeckRPC();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         listoftiles[0].FlipCardRPC(true);
         listoftiles[4].FlipCardRPC(true);
@@ -214,6 +212,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
         listoftiles[20].FlipCardRPC(true);
         listoftiles[24].FlipCardRPC(true);
 
+        yield return new WaitForSeconds(0.25f);
         for (int i = 0; i < playerordergameobject.Count; i++)
         {
             playerordergameobject[i].DrawCardRPC(2);
@@ -222,9 +221,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
             playerordergameobject[i].RequestPlacardRPC(4);
         }
 
-        yield return new WaitForSeconds(0.5f);
         gameon = true;
-
         while (gameon)
         {
             for (int i = 0; i < playerordergameobject.Count; i++)
@@ -253,8 +250,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
     public void Update()
     {
         submissionText.text = $"{remainingsubmissions} Submissions Left";
-        if (Input.GetMouseButtonDown(0))
-            blownUp.SetActive(false);
     }
 
     public void ChangeSorting()
@@ -310,7 +305,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
             instructions.text = endgame;
             abilityCollector.gameObject.SetActive(false);
             textCollector.gameObject.SetActive(false);
-            blownUp.SetActive(false);
+            BlownUpImage.instance.mainObject.SetActive(false);
             Log.instance.transform.SetAsLastSibling();
 
             if (resigningPlayer > -1)
@@ -386,20 +381,6 @@ public class Manager : MonoBehaviour, IOnEventCallback
             Destroy(buttonsInCollector[0].gameObject);
             buttonsInCollector.RemoveAt(0);
         }
-    }
-
-    public void NewImage(Image image, bool card)
-    {
-        blownUp.transform.SetAsLastSibling();
-        blownUp.SetActive(true);
-
-        blownUp.transform.GetChild(0).GetComponent<Image>().sprite = image.sprite;
-        blownUp.transform.GetChild(0).gameObject.SetActive(!card);
-
-        blownUp.transform.GetChild(1).gameObject.SetActive(card);
-
-        blownUp.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = image.sprite;
-        blownUp.transform.GetChild(2).gameObject.SetActive(card);
     }
 
     public void Quit()

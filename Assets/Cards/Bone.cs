@@ -31,20 +31,20 @@ public class Bone : Card
         BoneArrow myArrow = player.chosenarrow;
         Card finalCard = myArrow.groupoftiles[4].mycard;
 
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+        Log.instance.AddTextRPC($"");
         switch (myArrow.direction)
         {
             case BoneArrow.Direction.up:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column+1} upwards.");
+                Log.instance.AddTextRPC( $"{player.name} shifts column {myArrow.groupoftiles[0].column+1} upwards.");
                 break;
             case BoneArrow.Direction.down:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts column {myArrow.groupoftiles[0].column+1} downwards.");
+                Log.instance.AddTextRPC( $"{player.name} shifts column {myArrow.groupoftiles[0].column+1} downwards.");
                 break;
             case BoneArrow.Direction.left:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row+1} to the left.");
+                Log.instance.AddTextRPC( $"{player.name} shifts row {myArrow.groupoftiles[0].row+1} to the left.");
                 break;
             case BoneArrow.Direction.right:
-                Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} shifts row {myArrow.groupoftiles[0].row+1} to the right.");
+                Log.instance.AddTextRPC( $"{player.name} shifts row {myArrow.groupoftiles[0].row+1} to the right.");
                 break;
         }
 
@@ -52,13 +52,14 @@ public class Bone : Card
         {
             TileData currentTile = Manager.instance.listoftiles[myArrow.groupoftiles[i].position];
             TileData previousTile = Manager.instance.listoftiles[myArrow.groupoftiles[i-1].position];
-            currentTile.NewCardRPC(previousTile.mycard, previousTile.mycard.IsPublic());
+            Debug.Log($"{previousTile.mycard.name} moved");
+            currentTile.NewCardRPC(previousTile.mycard, previousTile.mycard.IsPublic(), false);
             yield return new WaitForSeconds(0.05f);
         }
 
-        myArrow.groupoftiles[0].NullCardRPC();
-        Manager.instance.AddCardButton(player, finalCard, false);
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} knocks away {finalCard.logName}.");
+        finalCard.transform.SetParent(GameObject.Find("Canvas").transform);
+        finalCard.MoveCardRPC(new float[] { -750, 0 }, new float[] { 0, 0, 0 }, 0.3f);
+        Log.instance.AddTextRPC($"{player.name} knocks away {finalCard.logName}.");
 
         Manager.instance.instructions.text = $"Put a card from your hand in the site.";
         myArrow.groupoftiles[0].choicescript.enableBorder = true;
@@ -77,8 +78,8 @@ public class Bone : Card
         Manager.instance.ClearButtons();
 
         player.listOfHand.Remove(player.chosencard);
-        myArrow.groupoftiles[0].NewCardRPC(player.chosencard, true);
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} puts {finalCard.logName} into the Site.");
+        myArrow.groupoftiles[0].NewCardRPC(player.chosencard, true, false);
+        Log.instance.AddTextRPC($"{player.name} puts {finalCard.logName} into the Site.");
 
         if (finalCard.eventtile)
         {
@@ -86,9 +87,18 @@ public class Bone : Card
         }
         else
         {
-            int[] cardIDs = new int[1];
-            cardIDs[0] = finalCard.pv.ViewID;
-            player.pv.RPC("SendDraw", RpcTarget.All, cardIDs);
+            if (PhotonNetwork.IsConnected)
+            {
+                int[] cardIDs = new int[1];
+                cardIDs[0] = finalCard.pv.ViewID;
+                player.pv.RPC("SendDraw", RpcTarget.All, cardIDs);
+            }
+            else
+            {
+                Card[] gainCard = new Card[1];
+                gainCard[0] = finalCard;
+                player.AddToHand(gainCard);
+            }
         }
     }
 }

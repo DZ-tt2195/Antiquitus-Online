@@ -74,19 +74,78 @@ public class Card : MonoBehaviour
         yield return null;
     }
 
-    [PunRPC]
-    public void TrashThis(int playerOrder)
+    public void TrashRPC(int playerOrder)
     {
-        this.gameObject.transform.SetParent(Manager.instance.trash);
-        if (playerOrder > -1)
-            Manager.instance.playerordergameobject[playerOrder].listOfHand.Remove(this);
+        if (PhotonNetwork.IsConnected)
+        {
+            pv.RPC("TrashCard", RpcTarget.All, playerOrder);
+        }
+        else
+        {
+            StartCoroutine(TrashCard(playerOrder));
+        }
     }
 
-    public IEnumerator MoveCard(Vector2 newPos, Vector3 newRot, float waitTime)
+    [PunRPC]
+    IEnumerator TrashCard(int playerOrder)
+    {
+        Player player = null;
+        try
+        {
+            player = Manager.instance.playerordergameobject[playerOrder];
+            player.listOfHand.Remove(this);
+        }
+        catch { /*do nothing*/}
+
+        float zRot = Random.Range(-45f, 45f);
+        this.transform.SetAsLastSibling();
+
+        MoveCardRPC(new float[] { this.transform.localPosition.x, this.transform.localPosition.y-100 }, new float[] { 0, 0, zRot }, 0.3f);
+        StartCoroutine(this.FadeAway(0.3f));
+        if (player != null) player.SortHand();
+        yield return new WaitForSeconds(0.3f);
+
+        this.transform.SetParent(Manager.instance.trash);
+        this.transform.localPosition = new Vector2(-1000, 0);
+    }
+
+    public IEnumerator FadeAway(float totalTime)
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < totalTime)
+        {
+            this.image.SetAlpha(1f - (elapsedTime / totalTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        this.image.SetAlpha(0);
+        StartCoroutine(Unfade());
+    }
+
+    IEnumerator Unfade()
+    {
+        yield return new WaitForSeconds(2f);
+        image.SetAlpha(0);
+    }
+
+    public void MoveCardRPC(float[] newPosition, float[] newRotation, float waitTime)
+    {
+        if (PhotonNetwork.IsConnected)
+            pv.RPC("MoveCard", RpcTarget.All, newPosition, newRotation, waitTime);
+        else
+            StartCoroutine(MoveCard(newPosition, newRotation, waitTime));
+    }
+
+    [PunRPC]
+    IEnumerator MoveCard(float[] newPosition, float[] newRotation, float waitTime)
     {
         float elapsedTime = 0;
         Vector2 originalPos = this.transform.localPosition;
         Vector3 originalRot = this.transform.localEulerAngles;
+
+        Vector2 newPos = new Vector2(newPosition[0], newPosition[1]);
+        Vector3 newRot = new Vector3(newRotation[0], newRotation[1], newRotation[2]);
 
         while (elapsedTime < waitTime)
         {

@@ -14,8 +14,8 @@ public class CaveIn : Card
     public override IEnumerator OnDiscardEffect(Player player)
     {
         player.eventactivated = true;
-        pv.RPC("TrashThis", RpcTarget.All, -1);
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"{player.name} trashes {this.logName}.");
+        TrashRPC(-1);
+        Log.instance.AddTextRPC($"{player.name} trashes {this.logName}.");
 
         int playertracker = player.playerposition;
 
@@ -23,6 +23,7 @@ public class CaveIn : Card
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
             nextplayer.pv.RPC("TrashPlacard", nextplayer.pv.Controller, player.pv.Controller);
+
             player.waiting = true;
             while (player.waiting)
                 yield return null;
