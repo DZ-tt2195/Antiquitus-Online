@@ -49,7 +49,7 @@ public class TileData : MonoBehaviourPunCallbacks
         if (mycard != null)
         {
             mycard.transform.SetParent(Manager.instance.discard);
-            mycard.MoveCardRPC(new float[] { -2000, -330 }, new float[] { 0, 0, 0 }, 0.3f);
+            mycard.MoveCardRPC(new float[] { -2000, 0 }, new float[] { 0, 0, 0 }, 0.5f);
             mycard = null;
         }
     }
@@ -92,7 +92,8 @@ public class TileData : MonoBehaviourPunCallbacks
         mycard = card;
         card.transform.SetParent(this.transform);
         card.transform.SetAsFirstSibling();
-        if (fromDeck) card.transform.localPosition = new Vector3(0, 1500, 0);
+        if (fromDeck)
+            card.transform.localPosition = new Vector3(0, 1000, 0);
         card.image.sprite = faceUp ? card.originalSprite : facedownsprite;
         card.MoveCardRPC(new float[] { 0, 0 }, new float[] { 0, 0, 0 }, 0.3f);
     }

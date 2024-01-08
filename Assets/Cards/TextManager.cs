@@ -53,6 +53,10 @@ public class TextManager : MonoBehaviour
             for (int j = 0; j < Manager.instance.playerordergameobject.Count; j++)
                 Manager.instance.playerordergameobject[j].pv.RPC("WaitDone", RpcTarget.All);
         }
+        else
+        {
+            Log.instance.AddTextRPC("There's no one to pass to.");
+        }
     }
 
     [PunRPC]

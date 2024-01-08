@@ -86,6 +86,7 @@ public class Manager : MonoBehaviour, IOnEventCallback
         instructions = GameObject.Find("Instructions").GetComponent<TMP_Text>();
         deck = GameObject.Find("Deck").transform;
         discard = GameObject.Find("Discard").transform;
+        trash = GameObject.Find("Trash").transform;
         rep1deck = GameObject.Find("1REP Deck").transform;
         rep2deck = GameObject.Find("2REP Deck").transform;
         rep4deck = GameObject.Find("4REP Deck").transform;

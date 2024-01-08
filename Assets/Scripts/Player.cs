@@ -427,7 +427,7 @@ public class Player : MonoBehaviourPunCallbacks
         SortHand();
 
         discardMe.transform.SetParent(Manager.instance.discard);
-        discardMe.MoveCardRPC(new float[] { -1500, 0 }, new float[] { 0, 0, 0 }, 0.3f);
+        discardMe.MoveCardRPC(new float[] { -2000, 0 }, new float[] { 0, 0, 0 }, 0.5f);
     }
 
     [PunRPC]
@@ -493,6 +493,7 @@ public class Player : MonoBehaviourPunCallbacks
         {
             listOfHand.Add(card);
             card.transform.SetParent(cardhand);
+            StartCoroutine(card.FlipCard(0.3f, card.originalSprite));
 
             if (PhotonNetwork.IsConnected)
                 Log.instance.AddTextRPC($"{this.name} puts {card.logName} in their hand.");
@@ -645,29 +646,5 @@ public class Player : MonoBehaviourPunCallbacks
     }
 
 #endregion
-
-    [PunRPC]
-    public IEnumerator TrashPlacard(Photon.Realtime.Player requestingplayer)
-    {
-        if (placardhand.childCount >= 2)
-        {
-            for (int i = 0; i < listOfPlacard.Count; i++)
-                listOfPlacard[i].choicescript.EnableButton(this, true);
-
-            choice = "";
-            chosenPlacard = null;
-            Manager.instance.instructions.text = $"Trash one of your Placards.";
-            while (choice == "")
-                yield return null;
-
-            Log.instance.AddTextRPC($"{this.name} trashes {chosenPlacard.logName}.");
-            chosenPlacard.TrashRPC(this.playerposition);
-            yield return new WaitForSeconds(0.3f);
-            for (int i = 0; i < listOfPlacard.Count; i++)
-                listOfPlacard[i].choicescript.DisableButton();
-        }
-
-        GameObject.Find(requestingplayer.NickName).GetComponent<PhotonView>().RPC("WaitDone", requestingplayer);
-    }
 
 }

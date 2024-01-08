@@ -20,7 +20,7 @@ public class Treasure : Card
         int playertracker = player.playerposition;
         yield return null;
 
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        for (int i = 0; i < Manager.instance.playerordergameobject.Count; i++)
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
             nextplayer.DrawCardRPC(1);

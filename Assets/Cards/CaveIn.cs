@@ -20,7 +20,7 @@ public class CaveIn : Card
         int playertracker = player.playerposition;
         Log.instance.AddTextRPC($"");
 
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        for (int i = 0; i < Manager.instance.playerordergameobject.Count; i++)
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
 
@@ -65,7 +65,7 @@ public class CaveIn : Card
             while (thisPlayer.choice == "")
                 yield return null;
 
-            Log.instance.AddTextRPC($"{this.name} trashes {thisPlayer.chosenPlacard.logName}.");
+            Log.instance.AddTextRPC($"{thisPlayer.name} trashes {thisPlayer.chosenPlacard.logName}.");
             thisPlayer.chosenPlacard.TrashRPC(thisPlayer.playerposition);
             foreach (Placard placard in thisPlayer.listOfPlacard)
                 placard.choicescript.DisableButton();

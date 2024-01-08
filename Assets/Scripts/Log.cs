@@ -60,11 +60,11 @@ public class Log : MonoBehaviour
 
         if (linesOfText >= 31)
         {
-            textRT.sizeDelta = new Vector2(510, textRT.sizeDelta.y+34.5f);
+            textRT.sizeDelta = new Vector2(525, textRT.sizeDelta.y+45f);
 
             if (scroll.value <= 0.2f)
             {
-                textRT.localPosition = new Vector2(-40, textRT.localPosition.y + 25);
+                textRT.localPosition = new Vector2(-37.5f, textRT.localPosition.y + 25);
                 scroll.value = 0;
             }
         }

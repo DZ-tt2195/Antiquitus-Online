@@ -16,7 +16,7 @@ public class Coin : Card
         int playertracker = player.playerposition;
         Log.instance.AddTextRPC($"");
 
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        for (int i = 0; i < Manager.instance.playerordergameobject.Count; i++)
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
 
