@@ -20,18 +20,38 @@ public class Coin : Card
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
 
-            for (int j = 0; j < Manager.instance.playerordergameobject.Count; j++)
-                Manager.instance.playerordergameobject[j].pv.RPC("WaitForPlayer", RpcTarget.All, nextplayer.name);
+            if (PhotonNetwork.IsConnected)
+            {
+                for (int j = 0; j < Manager.instance.playerordergameobject.Count; j++)
+                    Manager.instance.playerordergameobject[j].pv.RPC("WaitForPlayer", RpcTarget.All, nextplayer.name);
+            }
 
-            nextplayer.pv.RPC("Coin", nextplayer.pv.Controller, player.pv.Controller);
-            player.waiting = true;
-            while (player.waiting)
-                yield return null;
-            playertracker = (playertracker == Manager.instance.playerordergameobject.Count - 1) ? 0 : playertracker + 1;
+            if (PhotonNetwork.IsConnected)
+            {
+                this.pv.RPC("CoinEffect", nextplayer.pv.Controller, nextplayer.playerposition, player.playerposition);
+                player.waiting = true;
+                while (player.waiting)
+                    yield return null;
+                playertracker = (playertracker == Manager.instance.playerordergameobject.Count - 1) ? 0 : playertracker + 1;
+
+                for (int j = 0; j < Manager.instance.playerordergameobject.Count; j++)
+                    Manager.instance.playerordergameobject[j].pv.RPC("WaitDone", RpcTarget.All);
+            }
+            else
+            {
+                yield return CoinEffect(player.playerposition, player.playerposition);
+            }
         }
-
-        for (int j = 0; j < Manager.instance.playerordergameobject.Count; j++)
-            Manager.instance.playerordergameobject[j].pv.RPC("WaitDone", RpcTarget.All);
     }
 
+    [PunRPC]
+    IEnumerator CoinEffect(int playerPosition, int requestingPosition)
+    {
+        Player thisPlayer = Manager.instance.playerordergameobject[playerPosition];
+        Player requestingPlayer = Manager.instance.playerordergameobject[requestingPosition];
+
+        yield return thisPlayer.ChoosePlacard();
+        if (PhotonNetwork.IsConnected)
+            requestingPlayer.pv.RPC("WaitDone", RpcTarget.All);
+    }
 }

@@ -64,7 +64,7 @@ public class Placard : MonoBehaviour
         float zRot = Random.Range(-45f, 45f);
         this.transform.SetAsLastSibling();
 
-        StartCoroutine(this.MoveCard(new float[] { this.transform.localPosition.x, this.transform.localPosition.y - 100 }, new float[] { 0, 0, zRot }, 0.3f));
+        StartCoroutine(this.MovePlacard(new float[] { this.transform.localPosition.x, this.transform.localPosition.y - 100 }, new float[] { 0, 0, zRot }, 0.3f));
         StartCoroutine(this.FadeAway(0.3f));
         if (player != null) player.SortPlacards();
         yield return new WaitForSeconds(0.3f);
@@ -73,7 +73,7 @@ public class Placard : MonoBehaviour
         this.transform.localPosition = new Vector2(-1000, 0);
     }
 
-    public IEnumerator FadeAway(float totalTime)
+    protected IEnumerator FadeAway(float totalTime)
     {
         float elapsedTime = 0;
         while (elapsedTime < totalTime)
@@ -93,15 +93,16 @@ public class Placard : MonoBehaviour
         image.SetAlpha(0);
     }
 
-    public void MoveCardRPC(float[] newPosition, float[] newRotation, float waitTime)
+    public void MovePlacardRPC(float[] newPosition, float[] newRotation, float waitTime)
     {
         if (PhotonNetwork.IsConnected)
-            pv.RPC("MoveCard", RpcTarget.All, newPosition, newRotation, waitTime);
+            pv.RPC("MovePlacard", RpcTarget.All, newPosition, newRotation, waitTime);
         else
-            StartCoroutine(MoveCard(newPosition, newRotation, waitTime));
+            StartCoroutine(MovePlacard(newPosition, newRotation, waitTime));
     }
 
-    IEnumerator MoveCard(float[] newPosition, float[] newRotation, float waitTime)
+    [PunRPC]
+    public IEnumerator MovePlacard(float[] newPosition, float[] newRotation, float waitTime)
     {
         float elapsedTime = 0;
         Vector2 originalPos = this.transform.localPosition;

@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &6003535913444933659
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
+  m_HorizontalFit: 0
   m_VerticalFit: 0
 --- !u!114 &3946966097162661297
 MonoBehaviour:
@@ -310,20 +310,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pv: {fileID: 1971174412856205664}
+  playerposition: 0
   cardhand: {fileID: 7234909196811047746}
   placardhand: {fileID: 5992934142874909944}
   listOfHand: []
   listOfPlacard: []
-  playerposition: 0
   myButton: {fileID: 0}
-  waiting: 0
-  turnon: 0
   choice: 
   chosenPlacard: {fileID: 0}
   chosencard: {fileID: 0}
   chosentile: {fileID: 0}
   chosenbox: {fileID: 0}
   chosenarrow: {fileID: 0}
+  waiting: 0
+  turnon: 0
   cardthisturn: {fileID: 0}
   tilethisturn: {fileID: 0}
   cardsdiscarded: 0

@@ -19,7 +19,7 @@ MonoBehaviour:
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: us
+    FixedRegion: usw
     Server: 
     Port: 0
     ProxyServer: 
@@ -70,6 +70,9 @@ MonoBehaviour:
   - ReceivePlacard
   - TrashCard
   - MoveCard
+  - MovePlacard
+  - CaveInEffect
+  - CoinEffect
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

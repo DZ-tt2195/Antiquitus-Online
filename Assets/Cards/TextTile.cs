@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class TextTile : Card
 {
-    // Start is called before the first frame update
     public override void Setup()
     {
         type = CardType.Text;
@@ -14,7 +13,7 @@ public class TextTile : Card
 
     public override IEnumerator OnTakeEffect(Player player)
     {
-        Log.instance.pv.RPC("AddText", RpcTarget.All, $"");
+        Log.instance.AddTextRPC($"");
         yield return TextManager.instance.WaitingTime(player);
     }
 }

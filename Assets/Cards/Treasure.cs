@@ -14,16 +14,16 @@ public class Treasure : Card
     public override IEnumerator OnDiscardEffect(Player player)
     {
         player.eventactivated = true;
-        pv.RPC("TrashThis", RpcTarget.All, -1);
+        TrashRPC(-1);
         Log.instance.AddTextRPC($"{player.name} trashes {this.logName}.");
 
         int playertracker = player.playerposition;
+        yield return null;
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             Player nextplayer = Manager.instance.playerordergameobject[playertracker];
             nextplayer.DrawCardRPC(1);
-            yield return new WaitForSeconds(0.25f);
             playertracker = (playertracker == Manager.instance.playerordergameobject.Count - 1) ? 0 : playertracker + 1;
         }
     }

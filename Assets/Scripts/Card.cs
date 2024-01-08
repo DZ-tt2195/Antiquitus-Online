@@ -109,7 +109,7 @@ public class Card : MonoBehaviour
         this.transform.localPosition = new Vector2(-1000, 0);
     }
 
-    public IEnumerator FadeAway(float totalTime)
+    protected IEnumerator FadeAway(float totalTime)
     {
         float elapsedTime = 0;
         while (elapsedTime < totalTime)
@@ -138,7 +138,7 @@ public class Card : MonoBehaviour
     }
 
     [PunRPC]
-    IEnumerator MoveCard(float[] newPosition, float[] newRotation, float waitTime)
+    public IEnumerator MoveCard(float[] newPosition, float[] newRotation, float waitTime)
     {
         float elapsedTime = 0;
         Vector2 originalPos = this.transform.localPosition;

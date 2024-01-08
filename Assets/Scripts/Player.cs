@@ -77,7 +77,7 @@ public class Player : MonoBehaviourPunCallbacks
     [PunRPC]
     public void AssignInfo(int position)
     {
-        this.transform.localPosition = new Vector3(-280 + 2000 * playerposition, 0, 0);
+        this.transform.localPosition = new Vector3(-280 + 2500 * playerposition, 0, 0);
         this.playerposition = position;
         this.myButton = GameObject.Find($"{this.name}'s Button").GetComponent<PlayerButton>();
         UpdateButtonText();
@@ -117,7 +117,7 @@ public class Player : MonoBehaviourPunCallbacks
     [PunRPC]
     void ButtonClick()
     {
-        movePosition = -2000 * playerposition;
+        movePosition = -2500 * playerposition;
         myButton.button.onClick.AddListener(ClickMe);
     }
 
@@ -193,13 +193,13 @@ public class Player : MonoBehaviourPunCallbacks
         Log.instance.AddTextRPC($"{this.name}: Turn {turns}");
 
         yield return ChooseTileInSite();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         for (int i = 0; i < tilethisturn.adjacentTiles.Count; i++)
             yield return ResolveAdjacentTile(tilethisturn.adjacentTiles[i]);
 
         yield return cardthisturn.OnTakeEffect(this);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         yield return AskForSubmission();
 
         cardthisturn = null;
@@ -407,7 +407,7 @@ public class Player : MonoBehaviourPunCallbacks
             float difference = (listOfHand.Count > 7) ? (-300 - (150 * multiplier)) * -2 / (listOfHand.Count - 1) : 100 + (50 * multiplier);
 
             Vector2 newPosition = new(startingX + difference * i, -600 * canvas.transform.localScale.x);
-            nextCard.MoveCardRPC(new float[] { newPosition.x, newPosition.y }, new float[] { nextCard.transform.localEulerAngles.x, nextCard.transform.localEulerAngles.y, nextCard.transform.localEulerAngles.z }, 0.3f);
+            StartCoroutine(nextCard.MoveCard(new float[] { newPosition.x, newPosition.y }, new float[] { nextCard.transform.localEulerAngles.x, nextCard.transform.localEulerAngles.y, nextCard.transform.localEulerAngles.z }, 0.3f));
         }
 
         UpdateButtonTextRPC();
@@ -543,14 +543,14 @@ public class Player : MonoBehaviourPunCallbacks
             float startingY = 115 * multiplier;
             float difference = 50 * multiplier;
             Vector2 newPosition = new(850 * canvas.transform.localScale.x, startingY-difference*i);
-            nextCard.MoveCardRPC(new float[] { newPosition.x, newPosition.y }, new float[] { this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, this.transform.localEulerAngles.z }, 0.3f);
+            StartCoroutine(nextCard.MovePlacard(new float[] { newPosition.x, newPosition.y }, new float[] { this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, this.transform.localEulerAngles.z }, 0.3f));
         }
 
         UpdateButtonTextRPC();
     }
 
     [PunRPC]
-    IEnumerator ChoosePlacard()
+    public IEnumerator ChoosePlacard()
     {
         if (placardhand.childCount < 5)
         {
@@ -594,7 +594,7 @@ public class Player : MonoBehaviourPunCallbacks
 
         Placard x = deckToFind.GetChild(0).GetComponent<Placard>();
         if (PhotonNetwork.IsConnected)
-            photonView.RPC("SendPlacard", RpcTarget.All, x.pv.ViewID);
+            photonView.RPC("ReceivePlacard", RpcTarget.All, x.pv.ViewID);
         else
             AddPlacard(x);
     }
@@ -612,7 +612,7 @@ public class Player : MonoBehaviourPunCallbacks
         }
         else
         {
-            Log.instance.AddTextRPC($"{this.name} gets a {placard.rep} REP placard.");
+            Log.instance.AddTextSecret($"{this.name} gets a {placard.rep} REP placard.");
             switch (placard.rep)
             {
                 case 1:
@@ -637,7 +637,7 @@ public class Player : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void RemovePlacard(int viewID)
+    void RemovePlacard(int viewID)
     {
         Placard nextPlacard = PhotonView.Find(viewID).gameObject.GetComponent<Placard>();
         nextPlacard.transform.SetParent(null);
@@ -645,40 +645,6 @@ public class Player : MonoBehaviourPunCallbacks
     }
 
 #endregion
-
-    [PunRPC]
-    public IEnumerator Text(Photon.Realtime.Player requestingplayer)
-    {
-        if (listOfPlacard.Count == 1)
-        {
-            TextManager.instance.pv.RPC("GetPlacard", requestingplayer, this.playerposition, listOfPlacard[0].pv.ViewID);
-        }
-        else
-        {
-            for (int i = 0; i < listOfPlacard.Count; i++)
-                listOfPlacard[i].choicescript.EnableButton(this, true);
-
-            choice = "";
-            chosenPlacard = null;
-            Manager.instance.instructions.text = $"Pass one of your Placards to {GetPreviousPlayer().name}.";
-            while (choice == "")
-                yield return null;
-
-            yield return new WaitForSeconds(0.3f);
-            for (int i = 0; i < listOfPlacard.Count; i++)
-                listOfPlacard[i].choicescript.DisableButton();
-
-            TextManager.instance.pv.RPC("GetPlacard", requestingplayer, this.playerposition, chosenPlacard.pv.ViewID);
-        }
-        Manager.instance.instructions.text = $"Waiting...";
-    }
-
-    [PunRPC]
-    public IEnumerator Coin(Photon.Realtime.Player requestingplayer)
-    {
-        yield return ChoosePlacard();
-        GameObject.Find(requestingplayer.NickName).GetComponent<PhotonView>().RPC("WaitDone", requestingplayer);
-    }
 
     [PunRPC]
     public IEnumerator TrashPlacard(Photon.Realtime.Player requestingplayer)
