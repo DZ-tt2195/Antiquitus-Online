@@ -70,7 +70,7 @@ public class Placard : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         this.transform.SetParent(Manager.instance.trash);
-        this.transform.localPosition = new Vector2(-1000, 0);
+        this.transform.localPosition = new Vector2(-2000, 0);
     }
 
     protected IEnumerator FadeAway(float totalTime)

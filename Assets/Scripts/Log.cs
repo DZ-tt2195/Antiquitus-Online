@@ -7,29 +7,25 @@ using Photon.Pun;
 using MyBox;
 
 public class Log : MonoBehaviour
-{
+{    
     public static Log instance;
     [ReadOnly] public PhotonView pv;
-    [ReadOnly] TMP_Text textBox;
-    [ReadOnly] RectTransform textRT;
     [ReadOnly] Scrollbar scroll;
-    int linesOfText = 0;
+    [SerializeField] RectTransform RT;
+    [SerializeField] TMP_Text textBoxClone;
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        textBox = this.transform.GetChild(0).GetComponent<TMP_Text>();
-        textRT = textBox.GetComponent<RectTransform>();
         scroll = this.transform.GetChild(1).GetComponent<Scrollbar>();
         instance = this;
-        textBox.text = "";
     }
 
     void Update()
     {
         #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Space))
-                AddText($"Test {linesOfText}");
+                AddText($"Test {RT.transform.childCount+1}");
         #endif
     }
 
@@ -55,17 +51,17 @@ public class Log : MonoBehaviour
     [PunRPC]
     void AddText(string text)
     {
-        linesOfText++;
-        textBox.text += text + "\n";
+        TMP_Text newText = Instantiate(textBoxClone, RT.transform);
+        newText.text = text;
 
-        if (linesOfText >= 31)
+        if (RT.transform.childCount >= 28)
         {
-            textRT.sizeDelta = new Vector2(525, textRT.sizeDelta.y+45f);
+            RT.sizeDelta = new Vector2(530, RT.sizeDelta.y+50);
 
             if (scroll.value <= 0.2f)
             {
-                textRT.localPosition = new Vector2(-37.5f, textRT.localPosition.y + 25);
                 scroll.value = 0;
+                RT.transform.localPosition = new Vector3(-30, RT.transform.localPosition.y + 25, 0);
             }
         }
     }
