@@ -121,8 +121,8 @@ public class Manager : MonoBehaviour, IOnEventCallback
         {
             Player nextPlayer = Instantiate(playerClone);
             nextPlayer.transform.SetParent(GameObject.Find("Store Players").transform);
-            nextPlayer.name = "You";
-            AddPlayer(0, "You");
+            nextPlayer.name = PlayerPrefs.GetString("Username");
+            AddPlayer(0, nextPlayer.name);
             StartCoroutine(PlayGame());
         }
     }

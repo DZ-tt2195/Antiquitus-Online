@@ -5,8 +5,6 @@ using Photon.Pun;
 using UnityEngine.UI;
 using System.Linq;
 using MyBox;
-using ExitGames.Client.Photon;
-using Photon.Realtime;
 
 public class Player : MonoBehaviourPunCallbacks
 {
@@ -498,7 +496,7 @@ public class Player : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsConnected)
                 Log.instance.AddTextRPC($"{this.name} puts {card.logName} in their hand.");
             else
-                Log.instance.AddTextRPC($"{this.name} put {card.logName} in your hand.");
+                Log.instance.AddTextRPC($"{this.name} puts {card.logName} in their hand.");
         }
 
         if (Manager.instance.sorting == Manager.Sorting.suit)
